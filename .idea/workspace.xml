@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9796bdf6-030d-418b-97a4-8c84f68c0fd4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SmartInterviewer-Code.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/Controller/SpeachToText.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BackEnd/Controller/Validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -308,7 +303,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49946696" weight="0.54408354" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.43426725" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.43426725" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4989339" weight="0.3549884" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18443497" />
       <window_info anchor="right" id="R Packages" order="3" />
