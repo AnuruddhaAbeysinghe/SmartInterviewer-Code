@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9796bdf6-030d-418b-97a4-8c84f68c0fd4" name="Default" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/My_pro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My_pro.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Controller/Reward.controller.createQTable.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Controller/Reward.controller.createState.py" beforeDir="false" />
+>>>>>>> d2b2f0a199397b7a3c92705d0e161da9fb5e1ef4
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,49 +31,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ConnectionToNeo4j.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py">
+      <file leaf-file-name="Reward.controller.createReward.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Reward.controller.createReward.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2244">
+              <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpeachToText.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/Controller/SpeachToText.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name="test2.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BackEnd/Controller/test2.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="NltkManagement.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" column="176" selection-start-line="13" selection-start-column="176" selection-end-line="13" selection-end-column="176" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name="text.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/Database/text.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="Validation.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Validation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="26" />
-            </state>
-          </provider>
+      <file leaf-file-name="rewardValue.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/Database/rewardValue.xml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -76,6 +63,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>text.txt</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,6 +84,13 @@
         <option value="$PROJECT_DIR$/SpeachToText.py" />
         <option value="$PROJECT_DIR$/Controller/SpeachToText.py" />
         <option value="$PROJECT_DIR$/Controller/ConnectionToNeo4j.py" />
+        <option value="$PROJECT_DIR$/BackEnd/Controller/TextToSpeechConverter.py" />
+        <option value="$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py" />
+        <option value="$PROJECT_DIR$/BackEnd/Database/CvQuestions.xml" />
+        <option value="$PROJECT_DIR$/BackEnd/Controller/SpeachToText.py" />
+        <option value="$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py" />
+        <option value="$PROJECT_DIR$/BackEnd/Controller/CvQuestionCreator.py" />
+        <option value="$PROJECT_DIR$/BackEnd/Controller/Reward.controller.createReward.py" />
       </list>
     </option>
   </component>
@@ -104,7 +103,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="15" />
     <option name="y" value="17" />
     <option name="width" value="1230" />
@@ -133,6 +132,12 @@
               <item name="SmartInterviewer-Code" type="462c0819:PsiDirectoryNode" />
               <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SmartInterviewer-Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SmartInterviewer-Code" type="462c0819:PsiDirectoryNode" />
+              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -169,8 +174,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Validation (2)">
-    <configuration name="ManiputaleNeo4j" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Reward.controller.createReward">
+    <configuration name="CvQuestionCreator" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_pro" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -178,18 +183,17 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BackEnd/Controller" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\python\My_pro\Controller\ManiputaleNeo4j.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BackEnd/Controller/CvQuestionCreator.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="Test_NLTK" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="NltkManagement" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_pro" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -197,18 +201,17 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BackEnd/Controller" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\python\My_pro\Controller\Test_NLTK.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="Validation (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Reward.controller.createReward" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_pro" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -216,12 +219,29 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Controller" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BackEnd/Controller" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Controller/Validation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BackEnd/Controller/Reward.controller.createReward.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="TextToSpeechConverter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="My_pro" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BackEnd/Controller" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BackEnd/Controller/TextToSpeechConverter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -246,39 +266,20 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="Validation" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="My_pro" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\python\My_pro\Controller\Validation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <list>
-      <item itemvalue="Python.ManiputaleNeo4j" />
-      <item itemvalue="Python.Validation" />
-      <item itemvalue="Python.Test_NLTK" />
-      <item itemvalue="Python.Validation (1)" />
       <item itemvalue="Python.Validation (2)" />
+      <item itemvalue="Python.CvQuestionCreator" />
+      <item itemvalue="Python.TextToSpeechConverter" />
+      <item itemvalue="Python.NltkManagement" />
+      <item itemvalue="Python.Reward.controller.createReward" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Reward.controller.createReward" />
+        <item itemvalue="Python.CvQuestionCreator" />
         <item itemvalue="Python.Validation (2)" />
-        <item itemvalue="Python.Validation (1)" />
-        <item itemvalue="Python.Validation" />
-        <item itemvalue="Python.ManiputaleNeo4j" />
-        <item itemvalue="Python.Test_NLTK" />
+        <item itemvalue="Python.NltkManagement" />
+        <item itemvalue="Python.TextToSpeechConverter" />
       </list>
     </recent_temporary>
   </component>
@@ -296,12 +297,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24925596" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5010661" side_tool="true" weight="0.3297414" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.41666666" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49946696" weight="0.54408354" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.43426725" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4989339" weight="0.3549884" />
@@ -311,16 +316,20 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
+=======
+      <window_info anchor="bottom" id="Python Console" order="7" />
+>>>>>>> d2b2f0a199397b7a3c92705d0e161da9fb5e1ef4
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32850242" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,6 +339,105 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/CvQuestionCreator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Database/CvQuestions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="42" lean-forward="true" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Validation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/TextToSpeechConverter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/SpeachToText.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/SpeachToText.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="176" selection-start-line="13" selection-start-column="176" selection-end-line="13" selection-end-column="176" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Validation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -407,42 +515,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Test_NLTK.py" />
     <entry file="file://$PROJECT_DIR$/BackEnd/Controller/ManiputaleNeo4j.py" />
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Cv.Question.Creator.py" />
     <entry file="file://$PROJECT_DIR$/BackEnd/Controller/ConnectionToNeo4j.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        <state relative-caret-position="255">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="176" selection-start-line="13" selection-start-column="176" selection-end-line="13" selection-end-column="176" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BackEnd/Controller/SpeachToText.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        <state relative-caret-position="17">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Validation.py">
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/CvQuestionCreator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="26" />
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Database/CvQuestions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Validation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/NltkManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/TextToSpeechConverter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/text.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Database/text.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Database/rewardValue.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/Reward.controller.createReward.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2244">
+          <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/Controller/test2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

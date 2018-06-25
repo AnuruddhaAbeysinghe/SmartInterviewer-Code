@@ -24,7 +24,7 @@ def validation(question):
 
  if question == "What is your university?":
      lable = "university"
-     audio = 'Audio/question 5.wav'
+     audio = '../Audio/question 5.wav'
 
  if question == "What are your weaknesses?":
      lable = "weaknesses"
