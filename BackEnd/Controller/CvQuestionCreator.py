@@ -1,7 +1,7 @@
 import os
 import time
 from xml.etree import ElementTree
-import TextToSpeechConverter
+import TextToSpeechConverter,TechnicalQuestions
 import random
 from BackEnd.Controller import SpeachToText
 
@@ -89,6 +89,12 @@ for c in session3_questions:
         if (count == 5 or answer == 1):
             result = 1
     count = 0
+
+
+
+TechnicalQuestions.question_generator()
+
+
 
 
 

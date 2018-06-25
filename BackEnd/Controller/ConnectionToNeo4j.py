@@ -15,3 +15,17 @@ def validationAnswer(answer, lable):
     exist = "MATCH (a:User{Id:'U0002',"+lable+":'" + answer + "'})  RETURN 1"
     validationValue = graph.run(exist).evaluate()
     return validationValue
+
+
+
+def ontologyQuestionGen(id):
+  query = "MATCH (j:Java{id:"+ id+"}) RETURN j.topic"
+  gen_Question = graph.run(query).evaluate()
+  # print(gen_Question)
+  return gen_Question
+
+# ontologyQuestionGen("1")
+
+
+
+
