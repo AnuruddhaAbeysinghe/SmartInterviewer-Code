@@ -1,21 +1,6 @@
 from py2neo import Graph
-from py2neo import Node, Relationship
-
 
 graph = Graph()
-
-def validationAnswer(answer, lable):
-
-  if lable == "why":
-    if answer !="":
-      return 1
-    else:
-      return None
-  else:
-    exist = "MATCH (a:User{Id:'U0002',"+lable+":'" + answer + "'})  RETURN 1"
-    validationValue = graph.run(exist).evaluate()
-    return validationValue
-
 
 
 def ontologyQuestionGen(id):
@@ -26,6 +11,15 @@ def ontologyQuestionGen(id):
 
 # ontologyQuestionGen("1")
 
+
+def getValueFromdb(subsection):
+
+    subsection = ""+subsection
+    exist = "MATCH(a: language) - [r: has]->(b:sub{Name:'"+subsection+"'})RETURN b.Details"
+    print(exist)
+    validationValue = graph.run(exist).evaluate()
+    print(validationValue)
+    return validationValue
 
 
 
