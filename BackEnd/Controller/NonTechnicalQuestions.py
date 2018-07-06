@@ -25,10 +25,10 @@ def generate_cv_questions():
         print("session")
         print(session)
         session_no_string = str(session)
-        session_node_count = ConnectionToNeo4j.session_Node_Count(session_no_string)
+        session_node_count = ConnectionToNeo4j.session_Node_Count(db,session_no_string)
         print("this is ")
         print(session_node_count)
-        node_id = ConnectionToNeo4j.get_node_id(session_no_string)
+        node_id = ConnectionToNeo4j.get_node_id(db,session_no_string)
 
         for id in range(node_id,session_node_count+node_id):
             q_list.append(str(id))
@@ -45,7 +45,7 @@ def generate_cv_questions():
 
 
 
-            non_technical_question = ConnectionToNeo4j.cvQuestionGen(random_que)
+            non_technical_question = ConnectionToNeo4j.cvQuestionGen(db,random_que)
             q_list.remove(random_que)
             print(q_list)
             print(non_technical_question)

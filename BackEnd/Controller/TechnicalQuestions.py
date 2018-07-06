@@ -21,11 +21,18 @@ def question_gen():
     stable_splitted_table_list_length = len(splitted_table_list)
     print("length")
     print(splitted_table_list_length)
-    random_table = random.choice(splitted_table_list)
-    print(random_table)
-    while splitted_table_list_length>1:
+    # random_table = random.choice(splitted_table_list)
+    # print(random_table)
+    while splitted_table_list_length>=1:
 
 
+        random_table = random.choice(splitted_table_list)
+        print(random_table)
+        splitted_table_list_length = splitted_table_list_length-1
+        print("length")
+        print(splitted_table_list_length)
+        splitted_table_list.remove(random_table)
+        print(splitted_table_list)
 
         itteration_value = int(10 / stable_splitted_table_list_length)
         print("itt")
@@ -57,13 +64,7 @@ def question_gen():
 
 
 
-        random_table = random.choice(splitted_table_list)
-        print(random_table)
-        splitted_table_list_length = len(splitted_table_list)
-        print("length")
-        print(splitted_table_list_length)
-        splitted_table_list.remove(random_table)
-        print(splitted_table_list)
+
 
 
 

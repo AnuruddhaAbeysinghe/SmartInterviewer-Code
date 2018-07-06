@@ -21,8 +21,8 @@ def getValueFromdb(subsection):
     print(validationValue)
     return validationValue
 
-def cvQuestionGen(id):
-  query = "MATCH (j:CV{id:"+ id+"}) RETURN j.topic"
+def cvQuestionGen(db,id):
+  query = "MATCH (j:"+db+"{id:"+ id+"}) RETURN j.topic"
   gen_Question = graph.run(query).evaluate()
   # print(gen_Question)
   return gen_Question
@@ -30,16 +30,16 @@ def cvQuestionGen(id):
 
 
 
-def session_Node_Count(session):
+def session_Node_Count(db,session):
   # session ="2"
-  query = "MATCH (a:CV{session: " +session+ "}) RETURN count(*)"
+  query = "MATCH (a:"+db+"{session: " +session+ "}) RETURN count(*)"
   gen_count = graph.run(query).evaluate()
   # print(gen_count)
   return  gen_count
 
 
-def get_node_id(session):
-  query = "MATCH (a:CV{session: " + session + "}) RETURN a.id"
+def get_node_id(db,session):
+  query = "MATCH (a:"+db+"{session: " + session + "}) RETURN a.id"
   gen_count = graph.run(query).evaluate()
   # print(gen_count)
   return gen_count
