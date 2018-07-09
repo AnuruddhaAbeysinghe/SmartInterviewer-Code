@@ -82,10 +82,13 @@ def gen_Question(keywords):
         question = "What are " + b['PRP$'] + " " + b['NNS'] + "?"
         print(question)
     elif all([key in words for key in NonTechnicalQuestionDirectory.l4]):
-        question = "What is " + b['PRP$'] + " " + b['JJ'] +" "+b['NN']+ "?"
+        question = "Tell about " + b['PRP'] + "?"
         print(question)
     elif all([key in words for key in NonTechnicalQuestionDirectory.l5]):
         question = "What are your " + b['JJ'] + " " + b['NNS']  + "?"
+        print(question)
+    elif all([key in words for key in NonTechnicalQuestionDirectory.l6]):
+        question = "What is your " + b['PRP$'] + " " + b['JJ'] +" "+b['NN'] + "?"
         print(question)
 
     return question

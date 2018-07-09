@@ -41,6 +41,7 @@ def question_gen():
 
         technical_node_count = ConnectionToNeo4j.getTechNodeCount(random_table)
         print(technical_node_count)
+        q_list = []
         for id in range(1, technical_node_count + 1):
             q_list.append(id)
         print(q_list)
@@ -59,7 +60,7 @@ def question_gen():
             parser = GingerIt()
             grammer_corrected_question_list = parser.parse(actual_question)
             grammer_cprrected_question = grammer_corrected_question_list.get("result")
-            TextToSpeechConverter.text_to_speech(grammer_cprrected_question,lang)
+            TextToSpeechConverter.text_to_speech(actual_question,lang)
             print(grammer_cprrected_question)
 
 

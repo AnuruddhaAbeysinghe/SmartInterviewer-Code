@@ -95,7 +95,7 @@ def gen_Question(keywords):
         question = "What is a "+ keywords
         print(question)
     elif all([key in words for key in TechnicalQuestionDictionary.tl7]):
-        question = "What is "+ keywords
+        question = "What are "+ keywords
         print(question)
     elif all([key in words for key in TechnicalQuestionDictionary.tl8]):
         question = "What is a "+ keywords
@@ -104,7 +104,7 @@ def gen_Question(keywords):
         question = "What is a "+ keywords
         print(question)
     elif all([key in words for key in TechnicalQuestionDictionary.tl10]):
-        question = "What is "+ keywords
+        question = "What are "+ keywords
         print(question)
     elif all([key in words for key in TechnicalQuestionDictionary.tl11]):
         question = "What is a "+ keywords
