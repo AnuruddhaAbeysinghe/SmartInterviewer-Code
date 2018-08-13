@@ -17,6 +17,7 @@ def generate_cv_questions():
     # node_Count = ConnectionToNeo4j.getNodeCount(db)
     lang = 'en'
     q_list = []
+    pro_list = []
     count = 1
     session = 0
 
@@ -54,7 +55,26 @@ def generate_cv_questions():
             grammer_corrected_question_list = parser.parse(actual_question)
             grammer_corrected_question = grammer_corrected_question_list.get("result")
             TextToSpeechConverter.text_to_speech(grammer_corrected_question, lang)
-            if random_que=="6":
+            if random_que=="5":
+                pro = ConnectionToNeo4j.getProjects("CV", "5")
+                print(pro)
+                for id in range (1,pro+1):
+                    pro_list.append(str(id))
+                print(pro_list)
+                random_proj_que = random.choice(pro_list)
+                modify_random_proj_que = "p"+random_proj_que
+                print(modify_random_proj_que)
+
+                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db,modify_random_proj_que)
+                actual_project_question = QuestionCreator.gen_Question(project_question)
+                parser = GingerIt()
+                grammer_corrected_project_question_list = parser.parse(actual_project_question)
+                grammer_corrected_pr0ject_question = grammer_corrected_project_question_list.get("result")
+                TextToSpeechConverter.text_to_speech(grammer_corrected_pr0ject_question, lang)
+
+
+
+
                 tech = input()
                 global  technology_list
                 technology_list = tech

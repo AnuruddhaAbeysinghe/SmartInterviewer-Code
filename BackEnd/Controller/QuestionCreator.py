@@ -16,7 +16,7 @@ from nltk.corpus import wordnet as wn
 a={}
 b=[]
 train_text = state_union.raw("2005-GWBush.txt")
-# keywords ="familiar technologies"
+# keywords ="Object oriented programming"
 
 
 question = ""
@@ -89,6 +89,9 @@ def gen_Question(keywords):
         print(question)
     elif all([key in words for key in NonTechnicalQuestionDirectory.l6]):
         question = "What is your " + b['PRP$'] + " " + b['JJ'] +" "+b['NN'] + "?"
+        print(question)
+    else:
+        question = "Explain about your " + keywords+" and its technologies?"
         print(question)
 
     return question
