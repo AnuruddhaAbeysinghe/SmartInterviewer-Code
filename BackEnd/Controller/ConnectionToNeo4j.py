@@ -77,7 +77,19 @@ def getProjects(db,id):
     return get_projects
     # print(get_projects)
 
+def getMatchingTopics(db,topic):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'})RETURN count(b.Name)>0"
+    get_availability = graph.run(query).evaluate()
+    return get_availability
 
-# pro = getProjects("CV","5")
+# def getMatchingDescriptionTopic(db,detail):
+#     query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{})WHERE b.Details =~ 'object' RETURN count(b.Name)>0"
+#     get_detail_availability = graph.run(query).evaluate()
+#     print(get_detail_availability)
+#
+#
+#
+# getMatchingDescriptionTopic("java","object")
+    # pro = getProjects("CV","5")
 #
 # print(pro)
