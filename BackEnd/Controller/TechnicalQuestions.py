@@ -1,4 +1,4 @@
-import NonTechnicalQuestions,random,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter
+import NonTechnicalQuestions,random,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
 import requests
 from gingerit.gingerit import GingerIt
 
@@ -13,6 +13,7 @@ def question_gen():
     tech_keywords = NonTechnicalQuestions.technology_list
     print(tech_keywords)
     print("hey")
+    nested_question_ccount = 2
     # strus = "java,python"
 
     splitted_table_list = (tech_keywords.split(',', ))
@@ -47,6 +48,9 @@ def question_gen():
         print(q_list)
 
         for itt in range(itteration_value):
+            print("my itteration")
+            print(itt)
+
             random_que = random.choice(q_list)
             print(random_que)
             random_que_string = str(random_que)
@@ -62,6 +66,23 @@ def question_gen():
             grammer_cprrected_question = grammer_corrected_question_list.get("result")
             TextToSpeechConverter.text_to_speech(actual_question,lang)
             print(grammer_cprrected_question)
+
+            if itteration_value>1 and nested_question_ccount>0:
+                nested = NestedQuestionCreator.keywordSelector()
+                if nested != 0:
+                    print("nested keyword value")
+                    actual_question = technicalQuestionCreator.gen_Question(nested)
+                    TextToSpeechConverter.text_to_speech(actual_question, lang)
+                    print(actual_question)
+
+                    nested_question_ccount = nested_question_ccount - 1
+                    print(nested)
+                else:
+                    print("when ignores")
+                print("true")
+
+            else:
+                print("false")
 
 
 

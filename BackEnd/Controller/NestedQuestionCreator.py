@@ -1,7 +1,7 @@
 import ConnectionToNeo4j,random
 
 def keywordSelector():
-    filtered_words_string = "pickling  is  a unpickling good python concept"
+    filtered_words_string = " is unpickling a  good python concept"
     filtered_words = filtered_words_string.split(" ")
     db ="python"
     topic_list = []
@@ -18,10 +18,13 @@ def keywordSelector():
         print(topic_availability)
         if topic_availability == True:
             topic_list.append(value)
-    print(topic_list)
+    # print(topic_list)
 
-    random_keyword = random.choice(topic_list)
-    return  random_keyword
+    if len(topic_list) > 0:
+        random_keyword = random.choice(topic_list)
+        return  random_keyword
+    else:
+        return 0
 
-keyword = keywordSelector();
+# keyword = keywordSelector();
 # for()
