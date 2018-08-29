@@ -1,5 +1,5 @@
 import NonTechnicalQuestions,random,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
-import requests
+import requests,math
 from gingerit.gingerit import GingerIt
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -18,6 +18,7 @@ def question_gen():
 
     splitted_table_list = (tech_keywords.split(',', ))
     print(splitted_table_list)
+    print("list is printed")
     splitted_table_list_length = len(splitted_table_list)
     stable_splitted_table_list_length = len(splitted_table_list)
     print("length")
@@ -35,7 +36,14 @@ def question_gen():
         splitted_table_list.remove(random_table)
         print(splitted_table_list)
 
-        itteration_value = int(10 / stable_splitted_table_list_length)
+        split_list_length = stable_splitted_table_list_length
+        itteration_val= int(11 / split_list_length)
+        itteration_value = math.ceil(itteration_val)
+
+        # get the nested value count after filling technologies
+        rem_nested_count = 11-(split_list_length * itteration_value)
+        nested_question_ccount = nested_question_ccount + rem_nested_count
+
         print("itt")
         print(itteration_value)
 
