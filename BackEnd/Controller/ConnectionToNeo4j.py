@@ -82,20 +82,17 @@ def getMatchingTopics(db,topic):
     get_availability = graph.run(query).evaluate()
     return get_availability
 
-# def getNestedWordId(db,topic):
-#     query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'" + topic + "'})RETURN b.id"
-#     nested_id =graph.run(query).evaluate()
-#     print(nested_id)
-# getNestedWordId("python", "unpickling")
+def getMatchingTopicsNonTech(db):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub)RETURN count(b)>0"
+    availability = graph.run(query).evaluate()
+    return availability
 
-# def getMatchingDescriptionTopic(db,detail):
-#     query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{})WHERE b.Details =~ 'object' RETURN count(b.Name)>0"
-#     get_detail_availability = graph.run(query).evaluate()
-#     print(get_detail_availability)
-#
-#
-#
-#
-    # pro = getProjects("CV","5")
+
+def cvProjectTech(db,pid):
+  query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.technologies"
+  gen_Question = graph.run(query).evaluate()
+  return gen_Question
+
+# pro = cvProjectTech("CV",'p1')
 #
 # print(pro)

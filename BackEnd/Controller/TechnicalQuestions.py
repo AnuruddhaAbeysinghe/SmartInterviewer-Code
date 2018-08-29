@@ -68,7 +68,7 @@ def question_gen():
             print(grammer_cprrected_question)
 
             if itteration_value>1 and nested_question_ccount>0:
-                nested = NestedQuestionCreator.keywordSelector()
+                nested = NestedQuestionCreator.keywordSelector(random_table)
                 if nested != 0:
                     print("nested keyword value")
                     actual_question = technicalQuestionCreator.gen_Question(nested)

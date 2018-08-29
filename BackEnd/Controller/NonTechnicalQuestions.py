@@ -1,5 +1,5 @@
 import random,time
-import ConnectionToNeo4j,TextToSpeechConverter,QuestionCreator
+import ConnectionToNeo4j,TextToSpeechConverter,QuestionCreator,NestedQuestionCreator
 
 from gingerit.gingerit import GingerIt
 import requests
@@ -61,6 +61,8 @@ def generate_cv_questions():
                 for id in range (1,pro+1):
                     pro_list.append(str(id))
                 print(pro_list)
+
+
                 random_proj_que = random.choice(pro_list)
                 modify_random_proj_que = "p"+random_proj_que
                 print(modify_random_proj_que)
@@ -73,12 +75,11 @@ def generate_cv_questions():
                 TextToSpeechConverter.text_to_speech(grammer_corrected_pr0ject_question, lang)
 
 
-
-
                 tech = input()
                 global  technology_list
-                technology_list = tech
-
+                technology_list = NestedQuestionCreator.nonTechnicalKeywordSeelector(tech,modify_random_proj_que)
+                print("hello tech")
+                print(technology_list)
         q_list = []
         count = count+1
 
@@ -86,7 +87,7 @@ def generate_cv_questions():
 
 #
 # node_Count = ConnectionToNeo4j.getNodeCount(db)
-
+#
 # process_content()
 # print((word, tag)for word, tag in sentence if tag in ('NN', 'JJ'))
 
