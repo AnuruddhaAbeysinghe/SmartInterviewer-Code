@@ -14,6 +14,7 @@ def question_gen():
     print(tech_keywords)
     print("hey")
     nested_question_ccount = 2
+    diff_level = "low"
     # strus = "java,python"
 
     splitted_table_list = (tech_keywords.split(',', ))

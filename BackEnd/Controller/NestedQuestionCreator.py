@@ -47,7 +47,6 @@ def nonTechnicalKeywordSeelector(names,project):
             db_list.append(value)
     if len(db_list) > 0:
         db_string_list = ','.join(db_list)
-        print("this will be the string print okayyyyyyyyyyyyyy")
         print(db_string_list)
         return  db_string_list
     else:
