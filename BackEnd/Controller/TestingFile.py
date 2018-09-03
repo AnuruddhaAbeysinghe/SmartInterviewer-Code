@@ -1,27 +1,17 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jun 17 21:54:23 2018
-
-@author: ASUS
-"""
-
-
 import numpy as np
 from xml.etree import ElementTree as ET
-from BackEnd.Controller import ConnectionToNeo4j
 #import matlab-python as matlab
-
 
 
 #---------------------------------------------------------------------------------------------
 #Identify the state
- 
+
 facial = int(input("Facial :"))
 voice = int(input("Voice :"))
 answer = int(input("Answer :"))
 
 total = (facial + voice + answer)
-
+#total = 54;
 print("Total = ",total)
 total = int(total)
 
@@ -50,48 +40,11 @@ else:
 #----------------------------------------------------------------------------------------------------------------
 #Create the metrix
 
-# R = np.matrix([[0, 0, 0, 0, 0],
-#                [0, 0, 0, 0, 0],
-#                [0, 0, 0, 0, 0],
-#                [0, 0, 0, 0, 0],
-#                [0, 0, 0, 0, 0]])
-
-# R = np.matrix([[64.0, 64.0, 64.0, 80.0, 64.0],
-#                [64.0, 64.0, 64.0, 80.0, 64.0],
-#                [64.0, 64.0, 64.0, 80.0, 64.0],
-#                [64.0, 100.0, 64.0, 80.0, 64.0],
-#                [64.0, 64.0, 64.0, 80.0, 64.0]])
-
-# R = np.matrix([[87.679663, 99.119352, 98.879943, 98.607253, 81.504678],
-#                [77.586842, 98.634585, 99.156076, 97.516682, 99.509751],
-#                [95.848135, 98.676680, 97.443117, 99.802724, 94.070595],
-#                [99.338241, 88.679581, 99.776517, 99.607346, 75.542234],
-#                [98.925505, 97.981062, 100.000000, 98.545958, 20.230419]])
-
-
-
-
-
-
-# R = np.matrix([[96.0, 96.0, 96.0, 100.0, 96.0],
-#                [96.0, 96.0, 96.0, 100.0, 96.0],
-#                [96.0, 96.0, 96.0, 100.0, 96.0],
-#                [96.0, 96.25, 96.0, 100.0, 96.0],
-#                [96.0, 96.0, 96.0, 100.0, 96.0]])
-
-# R = np.matrix([[99.2000, 99.2000, 99.2000, 99.2000, 99.2000],
-#                [99.2000, 99.2000, 99.2000, 99.2000, 99.2000],
-#                [99.2000, 99.2000, 99.2000, 99.2000, 99.2000],
-#                [99.2000, 93.0000, 99.2000, 99.2000, 99.2000],
-#                [99.2000, 99.2000, 99.2000, 99.2000, 99.2000]])
-
-# R = np.matrix([[92.807644, 99.889420, 99.288169, 95.151532, 92.370516],
-#                [99.712525, 100.000000, 99.288169, 85.721550, 93.808366],
-#                [98.551180, 99.019491, 99.372452, 96.489693, 99.185307],
-#                [96.278086, 98.261064, 93.921858, 98.795678, 93.808366],
-#                [94.053272, 97.200365, 98.659636, 96.489693, 97.971093]])
-
-
+R = np.matrix([[0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0]])
 
 # -------------------------------------------------------------------------------
 # Get the latest Q-table reguarding the language
@@ -101,32 +54,7 @@ fname = "../Database/text.txt"
 with open(fname, 'r') as f:
     R = np.genfromtxt(f,dtype="float")
 
-data = R
-print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-# if R is None:
-#     print("No value")
-# else:
-#     print("Testing 1")
-#     print(ConnectionToNeo4j.createQtable(R))
-
-# ConnectionToNeo4j.createQtable(R)
-
-print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-
-#-----------------------------------------------------------------------------------
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-print("Get from ontology \n",ConnectionToNeo4j.createQtable1())
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-#-----------------------------------------------------------------------------------
-
-R = np.matrix(R)
-
-# matrix = open(fname).read()
-# matrix = [item.split('\n') for item in matrix.split('\n')]
-# R = matrix.reshape((matrix.shape[0], 5))
-
-
-print("Get from text file-latest updated \n",R)
+#data = R
 
 print("----------------------------------------------")
 # Q matrix
@@ -147,14 +75,10 @@ else:
 # Gamma (learning parameter).
 gamma = 0.8
 
-#Initial state
-if state == 5:
-    initial_state = 4
-else:
-    initial_state = state
+# Initial state
+initial_state = 1
 
 
-#initial_state = state
 # This function returns all available actions in the state given as an argument
 def available_actions(state):
     current_state_row = R[state,]
@@ -195,14 +119,12 @@ update(initial_state, action, gamma)
 # Create the reward value
 
 # iterarte the process
-for i in range(100):
+for i in range(1000):
     current_state = np.random.randint(0, int(Q.shape[0]))
     available_act = available_actions(current_state)
     action = sample_next_action(available_act)
     update(current_state, action, gamma)
-print("-----------------------")
-print("New updated one \n",Q)
-print("-----------------------")
+
 #----------------------------------------------------------------------------------------------------------------
 #Save the Q-metrix in text file
 
@@ -244,4 +166,3 @@ for elem in root.iter('session'):
     elem.text = convertProb
 
 tree.write('../Database/rewardValue.xml')
-
