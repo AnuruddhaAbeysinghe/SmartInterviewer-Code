@@ -1,19 +1,24 @@
 from py2neo import Graph
-from py2neo import Node, Relationship
-
 
 graph = Graph("http://neo4j:Sepalika1993@127.0.0.1:7474/db/data")
 
-def validationAnswer(answer, lable):
 
-  if lable == "why":
-    if answer !="":
-      return 1
-    else:
-      return None
-  else:
-    exist = "MATCH (a:User{Id:'U0002',"+lable+":'" + answer + "'})  RETURN 1"
+def ontologyQuestionGen(id):
+  query = "MATCH (j:Java{id:"+ id+"}) RETURN j.topic"
+  gen_Question = graph.run(query).evaluate()
+  # print(gen_Question)
+  return gen_Question
+
+# ontologyQuestionGen("1")
+
+
+def getValueFromdb(subsection):
+
+    subsection = ""+subsection
+    exist = "MATCH(a: language) - [r: has]->(b:sub{Name:'"+subsection+"'})RETURN b.Details"
+    print(exist)
     validationValue = graph.run(exist).evaluate()
+<<<<<<< HEAD
     return validationValue
 
 def createQtable1():
@@ -35,3 +40,83 @@ def edit_username(R):
 
 
 
+=======
+    print(validationValue)
+    return validationValue
+
+def cvQuestionGen(db,id):
+  query = "MATCH (j:"+db+"{id:"+ id+"}) RETURN j.topic"
+  gen_Question = graph.run(query).evaluate()
+  # print(gen_Question)
+  return gen_Question
+
+def cvQuestionProjectGen(db,pid):
+  query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.topic"
+  gen_Question = graph.run(query).evaluate()
+  # print(gen_Question)
+  return gen_Question
+
+# cvQuestionProjectGen("CV","p1")
+
+def session_Node_Count(db,session):
+  # session ="2"
+  query = "MATCH (a:"+db+"{session: " +session+ "}) RETURN count(*)"
+  gen_count = graph.run(query).evaluate()
+  # print(gen_count)
+  return  gen_count
+
+
+def get_node_id(db,session):
+  query = "MATCH (a:"+db+"{session: " + session + "}) RETURN a.id"
+  gen_count = graph.run(query).evaluate()
+  # print(gen_count)
+  return gen_count
+# get_node_id("3")
+
+
+
+def technical_question_keyword(table,id):
+  val = "1"
+
+
+  query = "MATCH(a:language{Name:'"+table+"'}) - [r: has]->(b:sub{id:'"+id+"'})RETURN b.Name"
+  gen_Question = graph.run(query).evaluate()
+  # print(gen_Question)
+  return gen_Question
+# table ="java"
+# technical_question_keyword(table)
+
+def getTechNodeCount(db):
+  query = "MATCH(a:language{Name:'"+db+"'}) - [r: has]->(b:sub{})RETURN count(*)"
+  gen_count = graph.run(query).evaluate()
+  # print(gen_count)
+  return gen_count
+
+
+def getProjects(db,id):
+    query = "MATCH (a:"+db+"{id:"+id+"})-[:projects]->(proj) RETURN count(*)"
+    # query = "MATCH (a:CV{id:5})-[:projects]->(projects)RETURN count(*)"
+    get_projects =graph.run(query).evaluate()
+    return get_projects
+    # print(get_projects)
+
+def getMatchingTopics(db,topic):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'})RETURN count(b.Name)>0"
+    get_availability = graph.run(query).evaluate()
+    return get_availability
+
+def getMatchingTopicsNonTech(db):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub)RETURN count(b)>0"
+    availability = graph.run(query).evaluate()
+    return availability
+
+
+def cvProjectTech(db,pid):
+  query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.technologies"
+  gen_Question = graph.run(query).evaluate()
+  return gen_Question
+
+# pro = cvProjectTech("CV",'p1')
+#
+# print(pro)
+>>>>>>> 2b5c4e4012b8aeeb2b77407be44e2676622f2818
