@@ -1,5 +1,5 @@
 import random,time
-import ConnectionToNeo4j,TextToSpeechConverter,QuestionCreator,NestedQuestionCreator
+import ConnectionToNeo4j,TextToSpeechConverter,QuestionCreator,NestedQuestionCreator,vari
 
 from gingerit.gingerit import GingerIt
 import requests
@@ -10,7 +10,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 technology_list = []
-
+userid = vari.userId
 
 def generate_cv_questions():
     db = "CV"
@@ -67,7 +67,7 @@ def generate_cv_questions():
                 modify_random_proj_que = "p"+random_proj_que
                 print(modify_random_proj_que)
 
-                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db,modify_random_proj_que)
+                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db,modify_random_proj_que,userid)
                 actual_project_question = QuestionCreator.gen_Question(project_question)
                 parser = GingerIt()
                 grammer_corrected_project_question_list = parser.parse(actual_project_question)

@@ -27,13 +27,14 @@ def cvQuestionGen(db,id):
   # print(gen_Question)
   return gen_Question
 
-def cvQuestionProjectGen(db,pid):
-  query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.topic"
+def cvQuestionProjectGen(db,pid,user):
+  # query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.topic"
+  query = "MATCH (j:" + db + "{pid:'" + pid + "'}) - [r: projects]->(b:" + db + "{uid:'" + user + "'}) RETURN b.topic "
   gen_Question = graph.run(query).evaluate()
-  # print(gen_Question)
+  print(gen_Question)
   return gen_Question
 
-# cvQuestionProjectGen("CV","p1")
+cvQuestionProjectGen("CV","p1","uid001")
 
 def session_Node_Count(db,session):
   # session ="2"
@@ -73,6 +74,7 @@ def getTechNodeCount(db):
 def getProjects(db,id):
     query = "MATCH (a:"+db+"{id:"+id+"})-[:projects]->(proj) RETURN count(*)"
     # query = "MATCH (a:CV{id:5})-[:projects]->(projects)RETURN count(*)"
+
     get_projects =graph.run(query).evaluate()
     return get_projects
     # print(get_projects)
