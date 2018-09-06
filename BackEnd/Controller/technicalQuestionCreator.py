@@ -1,18 +1,15 @@
-import nltk
+
 import sys
-import nltk
-import re
-import time
+
 import nltk
 from nltk.corpus import state_union
 from nltk.tokenize import PunktSentenceTokenizer
 sys.path.insert(0, '../Database')
-import random,time
-import ConnectionToNeo4j,TextToSpeechConverter
-import TechnicalQuestionDictionary
-from nltk.stem import WordNetLemmatizer
-from nltk.wsd import lesk
-from nltk.corpus import wordnet as wn
+
+
+
+from BackEnd.Database import TechnicalQuestionDictionary
+
 a={}
 b=[]
 train_text = state_union.raw("2005-GWBush.txt")

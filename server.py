@@ -1,7 +1,7 @@
 from flask import  Flask,request
 
 from BackEnd.Controller import Validation
-
+from BackEnd.Controller import MainQuestionGenerator
 
 app = Flask(__name__)
 
@@ -45,6 +45,13 @@ def hello1():
 # def login():
 #     a="jaja"
 #     return "<h1>"%a%"</h1>"
+
+@app.route('/START')
+def start_session():
+
+    return '<h1>correctnessof the answer:</h1>' %MainQuestionGenerator.startsession()
+    # return "Method used: %s" % request.method
+
 
 
 

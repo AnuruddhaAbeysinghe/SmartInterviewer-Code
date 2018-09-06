@@ -7,9 +7,9 @@ import nltk
 from nltk.corpus import state_union
 from nltk.tokenize import PunktSentenceTokenizer
 import random,time
-import ConnectionToNeo4j,TextToSpeechConverter
+
 sys.path.insert(0, '../Database')
-import NonTechnicalQuestionDirectory
+from BackEnd.Database import NonTechnicalQuestionDirectory
 from nltk.stem import WordNetLemmatizer
 from nltk.wsd import lesk
 from nltk.corpus import wordnet as wn

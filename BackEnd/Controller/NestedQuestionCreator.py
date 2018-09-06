@@ -1,4 +1,5 @@
-import ConnectionToNeo4j,random
+from BackEnd.Controller import ConnectionToNeo4j
+import random
 
 # db = "python"
 def keywordSelector(db):

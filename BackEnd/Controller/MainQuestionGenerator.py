@@ -1,5 +1,5 @@
-import TechnicalQuestions,NonTechnicalQuestions,TechnicalQuestions
+from BackEnd.Controller import TechnicalQuestions,NonTechnicalQuestions
 
-
-NonTechnicalQuestions.generate_cv_questions()
-TechnicalQuestions.question_gen()
+def startsession():
+    NonTechnicalQuestions.generate_cv_questions()
+    TechnicalQuestions.question_gen()

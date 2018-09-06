@@ -1,5 +1,5 @@
-import NonTechnicalQuestions,random,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
-import requests,math
+from BackEnd.Controller import  NonTechnicalQuestions,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
+import requests,math,random
 from gingerit.gingerit import GingerIt
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
