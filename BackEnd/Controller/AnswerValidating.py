@@ -1,5 +1,6 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from difflib import SequenceMatcher
 
 
 
@@ -29,7 +30,6 @@ def ValidatingTechnical(userAnswer, dbAnswer):
             if w not in stopWords:
                 wordsFiltered2.append(w)
 
-
         marks = 0
         final_word = ""
 
@@ -38,15 +38,15 @@ def ValidatingTechnical(userAnswer, dbAnswer):
                 if word2 == word1:
                     marks+= 1
 
-        for word in wordsFiltered1:
+        for word in wordsFiltered2:
             final_word = final_word+" "+word
 
-
-        print(marks)
-
         wordcountofdbanswer = len(final_word.split())
+        print(marks)
         print(wordcountofdbanswer)
         finalmark = marks/wordcountofdbanswer
+
+        # finalmark = SequenceMatcher(None, wordsFiltered1, wordsFiltered2).ratio()
 
         return "%.2f" % finalmark
 
