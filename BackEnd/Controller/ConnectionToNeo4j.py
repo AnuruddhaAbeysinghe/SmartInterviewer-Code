@@ -34,7 +34,7 @@ def cvQuestionProjectGen(db,pid,user):
   print(gen_Question)
   return gen_Question
 
-cvQuestionProjectGen("CV","p1","uid001")
+# cvQuestionProjectGen("CV","p1","uid001")
 
 def session_Node_Count(db,session):
   # session ="2"
