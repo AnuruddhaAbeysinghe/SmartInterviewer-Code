@@ -3,11 +3,6 @@ from flask import  Flask,request
 from BackEnd.Controller import Validation
 
 
-
-
-
-
-
 app = Flask(__name__)
 
 
