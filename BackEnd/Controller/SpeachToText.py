@@ -4,8 +4,8 @@ from BackEnd.Controller import ConnectionToNeo4j, MostRecentAudioFileAccess, Ans
 
 def validation(subsection, typer):
  r = sr.Recognizer()
- audio = "BackEnd/Audio/"+MostRecentAudioFileAccess.MostRecentAudioClip()
- marks = "No"
+ audio = "../Audio/"+MostRecentAudioFileAccess.MostRecentAudioClip()
+ marks = ['None', '']
 
  with sr.AudioFile(audio) as source:
     audio = r.record(source)

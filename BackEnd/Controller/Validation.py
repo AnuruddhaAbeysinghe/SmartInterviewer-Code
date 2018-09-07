@@ -4,5 +4,6 @@ q="java  overriding object  technical"
 
 # subsection = input("enter sub area : \n")
 # typer = input("enter type : \n")
+value =[]
 value = SpeachToText.validation("pickling", "technical")
-print("correctnessof the answer:"+value)
+print(value)

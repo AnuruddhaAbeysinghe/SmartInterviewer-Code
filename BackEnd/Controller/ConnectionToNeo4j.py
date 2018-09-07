@@ -98,3 +98,38 @@ def cvProjectTech(db,pid):
 # pro = cvProjectTech("CV",'p1')
 #
 # print(pro)
+
+def sessionMarksStoring(Userid,Session,question,marks):
+
+
+    query = "MATCH(a: user{Userid: '"+Userid+"'}) return a.Userid"
+    userExist = graph.run(query).evaluate()
+
+    if (userExist == None):
+
+        query1 = "MATCH(c: root{Name: 'Session'}) CREATE(c) - [x: rootTOuser]-> (a: user{Userid:'"+Userid+"'})"
+        graph.run(query1).evaluate()
+
+    query3 = "MATCH(a: user{Userid: '"+Userid+"'}) - [r: userTOsession]->(b:session{no: '" + Session + "'}) return b.no"
+    sessionExist = graph.run(query3).evaluate()
+
+    if (sessionExist == None):
+
+        query4 = "MATCH(a: user{Userid: '"+Userid+"'}) CREATE(a) - [r: userTOsession]->(b:session{no: '" + Session + "'})"
+        graph.run(query4).evaluate()
+
+    query5 = "MATCH(a: user{Userid: '" + Userid + "'}) - [r: userTOsession]->(b:session{no: '" + Session + "',"+question+":'"+marks+"'}) return b.no"
+    questionExist = graph.run(query5).evaluate()
+
+    if (questionExist == None):
+
+        query6 = "MATCH(a: user{Userid: '"+Userid+"'}) - [r: userTOsession]->(b:session{no: '" + Session + "'}) SET b."+question+" = '"+marks+"' RETURN b"
+        marking = graph.run(query6).evaluate()
+
+    return questionExist
+
+
+
+
+
+
