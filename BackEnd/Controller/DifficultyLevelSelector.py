@@ -23,6 +23,14 @@ def increase_difficulty_level(level):
 #gets the difficulty level list
 def adding_diff_level_val_list(userId,db_diff,random_table,diff_level):
     level_list = ConnectionToNeo4j.getdiffLevelList(userId,db_diff,random_table,diff_level)
+    level_list_str = str(level_list)
     print("hello i got the list")
     print(level_list)
+
+    diff_list = level_list.split(',')
+    print("hello in the diff level selector")
+    diff_list = list(map(int, diff_list))
+    print(diff_list)
+    return (diff_list)
+
 

@@ -100,8 +100,56 @@ def getdiffLevelList(userId,db,techno,level):
     query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db + "{technology:'" + techno + "'}) RETURN b." + level+""
     gen_list = graph.run(query).evaluate()
     print(gen_list)
+    return gen_list
+
 #getdiffLevelList("uid001", "difficulty", "python", "medium")
+
+
+#generates the session details
+def getQuestionMarks(db,userId,sessid,number):
+    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: sessions]->(b:" + db + "{sessionid:'" + sessid + "'}) RETURN b." + number+""
+    gen_mark = graph.run(query).evaluate()
+    print(gen_mark)
+    return gen_mark
+
+#getQuestionMarks("session","uid001","session1","q1")
+
 
     # pro = cvProjectTech("CV",'p1')
 #
 # print(pro)
+
+def sessionMarksStoring(Userid,Session,question,marks):
+
+
+    query = "MATCH(a: user{Userid: '"+Userid+"'}) return a.Userid"
+    userExist = graph.run(query).evaluate()
+
+    if (userExist == None):
+
+        query1 = "MATCH(c: root{Name: 'Session'}) CREATE(c) - [x: rootTOuser]-> (a: user{Userid:'"+Userid+"'})"
+        graph.run(query1).evaluate()
+
+    query3 = "MATCH(a: user{Userid: '"+Userid+"'}) - [r: userTOsession]->(b:session{no: '" + Session + "'}) return b.no"
+    sessionExist = graph.run(query3).evaluate()
+
+    if (sessionExist == None):
+
+        query4 = "MATCH(a: user{Userid: '"+Userid+"'}) CREATE(a) - [r: userTOsession]->(b:session{no: '" + Session + "'})"
+        graph.run(query4).evaluate()
+
+    query5 = "MATCH(a: user{Userid: '" + Userid + "'}) - [r: userTOsession]->(b:session{no: '" + Session + "',"+question+":'"+marks+"'}) return b.no"
+    questionExist = graph.run(query5).evaluate()
+
+    if (questionExist == None):
+
+        query6 = "MATCH(a: user{Userid: '"+Userid+"'}) - [r: userTOsession]->(b:session{no: '" + Session + "'}) SET b."+question+" = '"+marks+"' RETURN b"
+        marking = graph.run(query6).evaluate()
+
+    return questionExist
+
+
+
+
+
+
