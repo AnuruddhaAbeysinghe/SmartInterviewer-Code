@@ -49,7 +49,7 @@ def get_node_id(db,session):
   gen_count = graph.run(query).evaluate()
   # print(gen_count)
   return gen_count
-# get_node_id("3")
+# get_node_id("CV","2")
 
 
 
@@ -95,6 +95,13 @@ def cvProjectTech(db,pid):
   gen_Question = graph.run(query).evaluate()
   return gen_Question
 
-# pro = cvProjectTech("CV",'p1')
+#returns the difficulty level list
+def getdiffLevelList(userId,db,techno,level):
+    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db + "{technology:'" + techno + "'}) RETURN b." + level+""
+    gen_list = graph.run(query).evaluate()
+    print(gen_list)
+#getdiffLevelList("uid001", "difficulty", "python", "medium")
+
+    # pro = cvProjectTech("CV",'p1')
 #
 # print(pro)

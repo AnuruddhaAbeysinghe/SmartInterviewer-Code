@@ -1,21 +1,37 @@
-from BackEnd.Controller import  NonTechnicalQuestions,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
+from BackEnd.Controller import  test,NonTechnicalQuestions,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
+from BackEnd.Controller import DifficultyLevelSelector,vari
 import requests,math,random
 from gingerit.gingerit import GingerIt
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 table_name =""
-
+answer_validy = 0
 
 def question_gen():
+    #difficulty level  generation
+    changed_know_list = []
+    global diff_level
+    diff_level = "easy"
+    userId = vari.userId
+    taking_list = []
+    prev1_ans_result = 0.2
+    prev2_ans_result = 0.2
+    db_diff = "difficulty"
+
+
+
+
+
     q_list = []
     lang = 'en'
     tech_keywords = NonTechnicalQuestions.technology_list
     print(tech_keywords)
     print("hey")
     nested_question_ccount = 2
-    diff_level = "low"
-    # strus = "java,python"
+
+
+
 
     splitted_table_list = (tech_keywords.split(',', ))
     print(splitted_table_list)
@@ -24,13 +40,30 @@ def question_gen():
     stable_splitted_table_list_length = len(splitted_table_list)
     print("length")
     print(splitted_table_list_length)
-    # random_table = random.choice(splitted_table_list)
-    # print(random_table)
+
+
+    #difficulty level  selection
+    if prev1_ans_result >=0.5 and prev2_ans_result >=0.5 :
+        diff_level = DifficultyLevelSelector.increase_difficulty_level(diff_level)
+    elif prev1_ans_result < 0.5 and prev2_ans_result < 0.5:
+        diff_level = DifficultyLevelSelector.decrease_difficulty_level(diff_level)
+    print(diff_level)
+
+
+
+
     while splitted_table_list_length>=1:
 
 
         random_table = random.choice(splitted_table_list)
         print(random_table)
+
+        #get the list of nodes according to the difficulty level
+        taking_list=DifficultyLevelSelector.adding_diff_level_val_list(userId,db_diff,random_table,diff_level)
+        print(taking_list)
+        print("hi i am the taking list")
+
+
         splitted_table_list_length = splitted_table_list_length-1
         print("length")
         print(splitted_table_list_length)
@@ -76,6 +109,11 @@ def question_gen():
             TextToSpeechConverter.text_to_speech(actual_question,lang)
             print(grammer_cprrected_question)
 
+            answer_validity = test.test()
+
+            while (answer_validity == "null"):
+                answer_validity = test.test()
+
             if itteration_value>1 and nested_question_ccount>0:
                 nested = NestedQuestionCreator.keywordSelector(random_table)
                 if nested != 0:
@@ -86,6 +124,11 @@ def question_gen():
 
                     nested_question_ccount = nested_question_ccount - 1
                     print(nested)
+
+                    answer_validity = test.test()
+
+                    while (answer_validity == "null"):
+                        answer_validity = test.test()
                 else:
                     print("when ignores")
                 print("true")
@@ -103,7 +146,9 @@ def question_gen():
 
 
 
-    # techs = NonTechnicalQuestions.technology_list
+
+
+                # techs = NonTechnicalQuestions.technology_list
     # print(techs)
     # lang = 'en'
     # q_list = []
