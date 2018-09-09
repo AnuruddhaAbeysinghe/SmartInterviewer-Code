@@ -42,18 +42,25 @@ def nonTechnicalKeywordSeelector(names,project):
         lower_case_value = val.lower()
         unique_filtered_word_nontech.add(lower_case_value)
         print(unique_filtered_word_nontech)
+        print("error in yesterday")
     for value in unique_filtered_word_nontech:
         db_availability = ConnectionToNeo4j.getMatchingTopicsNonTech(value)
+        print("error in now")
         if db_availability == True:
             db_list.append(value)
+        print(db_list)
+        print("it is printed")
     if len(db_list) > 0:
         db_string_list = ','.join(db_list)
         print(db_string_list)
+        print("error in that")
         return  db_string_list
     else:
         db = "CV"
         project_tech_list = ConnectionToNeo4j.cvProjectTech(db,project)
+        print("error in this")
         return project_tech_list
+
 
 
 

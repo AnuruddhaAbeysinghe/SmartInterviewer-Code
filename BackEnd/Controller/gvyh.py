@@ -1,12 +1,14 @@
-global ab
-ab = 1
 
-def apply():
-    ab=1
-    if ab==1:
-        print("hi")
-        ab=ab+1
-        print(ab)
-    print(ab)
-apply()
-print(ab)
+
+def ab():
+    a = "0.2"
+    b = "0.78"
+
+    a = float(a)
+    b = float(b)
+
+    if b>0.2:
+        print("hey")
+    else:
+        print("no")
+ab()

@@ -27,9 +27,9 @@ def cvQuestionGen(db,id):
   # print(gen_Question)
   return gen_Question
 
-def cvQuestionProjectGen(db,pid,user):
+def cvQuestionProjectGen(db,db2,pid,user):
   # query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.topic"
-  query = "MATCH (j:" + db + "{pid:'" + pid + "'}) - [r: projects]->(b:" + db + "{uid:'" + user + "'}) RETURN b.topic "
+  query = "MATCH (j:" + db + "{pid:'" + pid + "'}) - [r: projects_details]->(b:" + db2 + "{uid:'" + user + "'}) RETURN b.topic "
   gen_Question = graph.run(query).evaluate()
   print(gen_Question)
   return gen_Question
@@ -96,8 +96,8 @@ def cvProjectTech(db,pid):
   return gen_Question
 
 #returns the difficulty level list
-def getdiffLevelList(userId,db,techno,level):
-    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db + "{technology:'" + techno + "'}) RETURN b." + level+""
+def getdiffLevelList(userId,db,db2,techno,level):
+    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db2 + "{technology:'" + techno + "'}) RETURN b." + level+""
     gen_list = graph.run(query).evaluate()
     print(gen_list)
     return gen_list
@@ -106,13 +106,23 @@ def getdiffLevelList(userId,db,techno,level):
 
 
 #generates the session details
-def getQuestionMarks(db,userId,sessid,number):
-    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: sessions]->(b:" + db + "{sessionid:'" + sessid + "'}) RETURN b." + number+""
+def getQuestionMarks(db,db2,userId,sessid,number):
+    print(db)
+    print(db2)
+    print(userId)
+    print(sessid)
+    print(number)
+    query = "MATCH(a: "+db+"{Userid: '" + userId + "'}) - [r: userTOsession]->(b:"+db2+"{no: '"+sessid+"'}) return b."+number+""
     gen_mark = graph.run(query).evaluate()
+    print("marks will be printed not to worry")
+
     print(gen_mark)
+    print("marks will be printed not to worry")
     return gen_mark
 
-#getQuestionMarks("session","uid001","session1","q1")
+
+
+#getQuestionMarks("user","session","uid001","1","question1")
 
 
     # pro = cvProjectTech("CV",'p1')

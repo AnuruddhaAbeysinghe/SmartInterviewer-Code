@@ -21,8 +21,8 @@ def increase_difficulty_level(level):
 
 
 #gets the difficulty level list
-def adding_diff_level_val_list(userId,db_diff,random_table,diff_level):
-    level_list = ConnectionToNeo4j.getdiffLevelList(userId,db_diff,random_table,diff_level)
+def adding_diff_level_val_list(userId,user_diff,db_diff,random_table,diff_level):
+    level_list = ConnectionToNeo4j.getdiffLevelList(userId,user_diff,db_diff,random_table,diff_level)
     level_list_str = str(level_list)
     print("hello i got the list")
     print(level_list)

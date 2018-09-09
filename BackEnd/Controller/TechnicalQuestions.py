@@ -13,6 +13,9 @@ def question_gen():
     global changed_know_list
     changed_know_list = []
 
+    db2 = "user"
+    db3 = "session"
+
     global diff_level
     diff_level = "easy"
 
@@ -22,6 +25,8 @@ def question_gen():
     sessionId = vari.sessionId
     question_number = NonTechnicalQuestions.question_number
 
+    global qprinted
+    qprinted = 0
 
 
     global taking_list
@@ -34,13 +39,18 @@ def question_gen():
     prev2_ans_result= 0.2
 
     global prev1_que_count
-    prev1_que_count = 6
+    prev1_que_count = 5
 
     global prev2_que_count
-    prev2_que_count = 7
+    prev2_que_count = 6
+
+    global user_diff
+    user_diff = "user_difficulty"
 
     global db_diff
     db_diff = "difficulty"
+
+
 
 
 
@@ -131,7 +141,7 @@ def question_gen():
             print(diff_level)
 
             # get the list of nodes according to the difficulty level
-            taking_list = DifficultyLevelSelector.adding_diff_level_val_list(userId, db_diff, random_table, diff_level)
+            taking_list = DifficultyLevelSelector.adding_diff_level_val_list(userId, user_diff,db_diff, random_table, diff_level)
             print(taking_list)
             print("hi i am the taking list")
 
@@ -159,6 +169,14 @@ def question_gen():
             grammer_cprrected_question = grammer_corrected_question_list.get("result")
             TextToSpeechConverter.text_to_speech(actual_question,lang)
             print(grammer_cprrected_question)
+
+
+            qprinted = qprinted+1;
+            print("qprint")
+            print(qprinted)
+            print("qprint")
+
+
             question_number = question_number+1
             prev1_que_count = prev1_que_count+1
             prev2_que_count = prev2_que_count+1
@@ -175,6 +193,12 @@ def question_gen():
                     actual_question = technicalQuestionCreator.gen_Question(nested)
                     TextToSpeechConverter.text_to_speech(actual_question, lang)
                     print(actual_question)
+
+                    qprinted = qprinted + 1;
+                    print("qprint")
+                    print(qprinted)
+                    print("qprint")
+
                     question_number = question_number +1
                     prev1_que_count = prev1_que_count + 1
                     prev2_que_count = prev2_que_count + 1
@@ -195,20 +219,41 @@ def question_gen():
 
 
 
-            qno = str(question_number)
-            send_question = "q"+qno
-            print(qno)
+            p1_qno = str(prev1_que_count)
+            p1_send_question = "question"+p1_qno
+            print(p1_qno)
+
+            p2_qno = str(prev2_que_count)
+            p2_send_question = "question"+p2_qno
+            print(p1_qno)
+            print("this is prev one")
             print(prev1_que_count)
+            print("this is prev")
             print(prev2_que_count)
 
             print("nooooooooooooooooooooooooooo")
             if prev1_que_count == 7:
                 prev1_ans_result = 0.2
-                prev2_ans_result = ConnectionToNeo4j.getQuestionMarks(session_db,userId,sessionId,send_question)
+                prev2_ans_result = ConnectionToNeo4j.getQuestionMarks(db2,db3,userId,sessionId,p2_send_question)
+                prev2_ans_result = float(prev2_ans_result)
             else:
-                prev1_ans_result = ConnectionToNeo4j.getQuestionMarks(session_db,userId,sessionId,send_question)
-                prev2_ans_result = ConnectionToNeo4j.getQuestionMarks(session_db,userId,sessionId,send_question)
+                prev1_ans_result = ConnectionToNeo4j.getQuestionMarks(db2,db3,userId,sessionId,p1_send_question)
+                prev2_ans_result = ConnectionToNeo4j.getQuestionMarks(db2,db3,userId,sessionId,p2_send_question)
 
+                prev1_ans_result = float(prev1_ans_result)
+                prev2_ans_result = float(prev2_ans_result)
+
+            print("this is prev marksssssssssssss")
+            print(prev1_ans_result)
+            print(p1_send_question)
+            print(question_number)
+            print("this is prev marksssssssssssss")
+
+            print("this is prev marksssssssssssss")
+            print(prev2_ans_result)
+            print(p2_send_question)
+            print(question_number)
+            print("this is prev marksssssssssssss")
 
 
 

@@ -15,6 +15,7 @@ userid = vari.userId
 def generate_cv_questions():
     db = "CV"
     db2= "project"
+    db3 ="project_d"
     # node_Count = ConnectionToNeo4j.getNodeCount(db)
     lang = 'en'
     q_list = []
@@ -78,7 +79,7 @@ def generate_cv_questions():
                 modify_random_proj_que = "p"+random_proj_que
                 print(modify_random_proj_que)
 
-                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db2,modify_random_proj_que,userid)
+                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db2,db3,modify_random_proj_que,userid)
                 actual_project_question = QuestionCreator.gen_Question(project_question)
                 parser = GingerIt()
                 grammer_corrected_project_question_list = parser.parse(actual_project_question)
