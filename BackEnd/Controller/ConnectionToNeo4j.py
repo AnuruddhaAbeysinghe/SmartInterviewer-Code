@@ -160,6 +160,26 @@ def sessionMarksStoring(Userid,Session,question,marks):
 
 
 
+def createQtable1(K):
+    exist = "MATCH (n:language) where n.Name='" + K + "' return n.qtable"
+    qtableValue = graph.run(exist).evaluate()
+    return qtableValue
+
+
+# this is to send and update values
+def sendQtable(K,J):
+    query = "Match (n:language) where n.Name='" + K + "' SET n.qtable='" + J + "'  RETURN n.qtable"
+    qtableValue1 = graph.run(query).evaluate()
+    return qtableValue1
+
+# another method
+def edit_username(R):
+    person = graph.merge_one('language', 'qtable')
+    person['qtable'] = R
+    person.push()
+
+
+
 
 
 
