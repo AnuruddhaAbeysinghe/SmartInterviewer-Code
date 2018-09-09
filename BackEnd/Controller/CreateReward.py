@@ -8,11 +8,9 @@ Created on Sun Jun 17 21:54:23 2018
 import numpy as np
 from xml.etree import ElementTree as ET
 from BackEnd.Controller import ConnectionToNeo4j
-import irregular as re
 
-
-# import matlab-python as matlab
-
+# ------Things to do---------------------------------------------------------------------------------------
+#update the q-table on ontology
 
 # ---------------------------------------------------------------------------------------------
 # Identify the state
@@ -56,23 +54,11 @@ print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 # -----------------------------------------------------------------------------------
 
 
-# -------------------------------------------------------------------------------
-# Get the latest Q-table reguarding the language
 
-# fname = "../Database/text.txt"
-#
-# with open(fname, 'r') as f:
-#     R = np.genfromtxt(f, dtype="float")
 
 #data = R
 print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-# if R is None:
-#     print("No value")
-# else:
-#     print("Testing 1")
-#     print(ConnectionToNeo4j.createQtable(R))
 
-# ConnectionToNeo4j.createQtable(R)
 
 print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 #Get the String array matrix from ontology - split
@@ -91,15 +77,8 @@ print(number)
 print("this remove[]")
 print(type(number))
 
-P = np.fromstring(number, dtype=float)
-print(P)
-# H = P.resize(5,5)
-# print("this is after resize")
-# print(H)
-# print(type(H))
-H= np.reshape(P, (0, ))
-print(H)
-print(type(H))
+
+
 
 #H = [float(i) if '.' in i else int(i) for i in number]
 #H = np.asfarray(number,float)
@@ -111,11 +90,15 @@ print(type(H))
 #print(J)
 
 #change it into matrix
-R = np.matrix(number)
-print(type(R))
+# R = np.matrix(number)
+# print(type(R))
+# print(R)
 
-#R = np.array(J, dtype=np.float32)
-print(R)
+R = np.matrix([[64.0, 64.0, 64.0, 80.0, 64.0],
+               [64.0, 64.0, 64.0, 80.0, 64.0],
+               [64.0, 64.0, 64.0, 80.0, 64.0],
+               [64.0, 100.0, 64.0, 80.0, 64.0],
+               [64.0, 64.0, 64.0, 80.0, 64.0]])
 # try:
 #     I = float(ConnectionToNeo4j.createQtable1(K))
 #     R = np.matrix(I)
@@ -232,27 +215,30 @@ else:
     convertProb = "{0:.0f}%".format(np.max(Q) / 10)
     print("Precentage of difficulty - ", convertProb)
 
-# -------------------------------------------------------------------------------
-# update the XML file
+#--send to precentage value to ontology--------------
+print(type(convertProb))
 
-#-----------------------
-F= np.reshape(T, (0, ))
-print(F)
+convertProb2 = int(convertProb.strip("%"))
+print(convertProb2)
+#--identify the state--------------
+if convertProb2 <= 15:
+    rewardState = "Hard"
+elif convertProb2 <= 30:
+    rewardState = "Medium"
+else:
+    rewardState = "Easy"
 
-tree = ET.parse('../Database/rewardValue.xml')
-root = tree.getroot()
+print(rewardState)
+#--update the ontology---------------------------
 
-# modifying an attribute Language
-for elem in root.iter('language'):
-    elem.set('name', 'java')
+userid = "uid001"
+nodeid = "3"
 
-# modifying an attribute Session
-for elem in root.iter('session'):
-    elem.set('name', '1')
+#target- put 3 to easy from medium
 
-# changing a field text
-for elem in root.iter('session'):
-    elem.text = T
 
-tree.write('../Database/rewardValue.xml')
+
+#check the current stste of that node and delete it
+
+#insert new one
 
