@@ -2,8 +2,9 @@
 
 def ab():
     p =["apple","ant","mary"]
-    p = ",".join(p)
-    return p
+    if not p:
+        print("empyu")
+
 
 
 

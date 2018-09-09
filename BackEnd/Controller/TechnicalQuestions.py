@@ -151,6 +151,8 @@ def question_gen():
             print(changed_know_list)
             changed_know_list = list(changed_know_list)
 
+            if not changed_know_list:
+                changed_know_list = q_list
 
             random_que = random.choice(changed_know_list)
             print(random_que)
