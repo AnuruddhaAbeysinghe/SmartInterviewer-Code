@@ -3,5 +3,5 @@ def test() :
     return 1
 
 def kes():
-    he = "java,python"
+    he = "java python hahaa"
     return he

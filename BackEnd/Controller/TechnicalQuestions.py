@@ -187,7 +187,8 @@ def question_gen():
                 answer_validity = test.test()
 
             if itt>1 and nested_question_ccount>0:
-                nested = NestedQuestionCreator.keywordSelector(random_table)
+                filtered_words_string = " is unpickling a  good python concept overriding"
+                nested = NestedQuestionCreator.keywordSelector(random_table,filtered_words_string,"2")
                 if nested != 0:
                     print("nested keyword value")
                     actual_question = technicalQuestionCreator.gen_Question(nested)

@@ -2,10 +2,14 @@ from BackEnd.Controller import ConnectionToNeo4j
 import random
 
 # db = "python"
-def keywordSelector(db):
-    filtered_words_string = " is unpickling a  good python concept overriding"
-    filtered_words = filtered_words_string.split(" ")
+def keywordSelector(db,filtered_words_string,param):
 
+    filtered_words = filtered_words_string.split(" ")
+    print(filtered_words)
+    print("filtered_words")
+
+
+    global  topic_list
     topic_list = []
 
     # print(filtered_words)
@@ -13,16 +17,28 @@ def keywordSelector(db):
     for val in filtered_words:
         lower_case_val = val.lower()
         unique_filtered_words.add(lower_case_val)
-    # print(unique_filtered_words)
+    print(unique_filtered_words)
+    print("unique_filtered_words")
 
     for value in unique_filtered_words:
-        topic_availability = ConnectionToNeo4j.getMatchingTopics(db,value)
-        print(topic_availability)
-        if topic_availability == True:
-            topic_list.append(value)
+        if param == "2":
+            topic_availability = ConnectionToNeo4j.getMatchingTopics(db,value)
+            print(topic_availability)
+            if topic_availability == True:
+                topic_list.append(value)
+        elif param == "1":
+            topic_availability = ConnectionToNeo4j.getMatchingTopicsNonTech(value)
+            print(topic_availability)
+            if topic_availability == True:
+                topic_list.append(value)
+                print()
     # print(topic_list)
+    if param == "1":
+        topic_list = ",".join(topic_list)
+        return topic_list
 
-    if len(topic_list) > 0:
+
+    if len(topic_list) > 0 and param=="2":
         random_keyword = random.choice(topic_list)
         return  random_keyword
     else:

@@ -1,14 +1,11 @@
 
 
 def ab():
-    a = "0.2"
-    b = "0.78"
+    p =["apple","ant","mary"]
+    p = ",".join(p)
+    return p
 
-    a = float(a)
-    b = float(b)
 
-    if b>0.2:
-        print("hey")
-    else:
-        print("no")
-ab()
+
+b=ab()
+print(b)
