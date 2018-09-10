@@ -12,14 +12,20 @@ def ontologyQuestionGen(id):
 # ontologyQuestionGen("1")
 
 
-def getValueFromdb(subsection):
+def getValueFromdb(subsection,type):
 
-    subsection = ""+subsection
-    exist = "MATCH(a: language) - [r: has]->(b:sub{Name:'"+subsection+"'})RETURN b.Details"
-    print(exist)
-    validationValue = graph.run(exist).evaluate()
-    print(validationValue)
-    return validationValue
+    if type == 'nested':
+        subsection = "" + subsection
+        exist = "MATCH(b:subB{Name:'"+subsection+"'})RETURN b.Details"
+        validationValue = graph.run(exist).evaluate()
+        print(validationValue)
+        return validationValue
+    else:
+        subsection = "" + subsection
+        exist = "MATCH(a: language) - [r: has]->(b:sub{Name:'" + subsection + "'})RETURN b.Details"
+        validationValue = graph.run(exist).evaluate()
+        print(validationValue)
+        return validationValue
 
 def cvQuestionGen(db,id):
   query = "MATCH (j:"+db+"{id:"+ id+"}) RETURN j.topic"
