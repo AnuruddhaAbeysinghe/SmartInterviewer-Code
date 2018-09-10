@@ -59,7 +59,8 @@ def gen_Question(keywords):
 
 
         key, words = zip(*tagged)
-        print(key)
+        compare = list(words)
+        #print(key)
         print(words)
         a = dict(zip(key, words))
         b= dict(zip(words, key))
@@ -72,23 +73,23 @@ def gen_Question(keywords):
         print(str(e))
 
 
-    if all([key in words for key in NonTechnicalQuestionDirectory.l1]):
+    if compare == NonTechnicalQuestionDirectory.l1:
         question = "What "+ b['NNP']
         print(question)
-    elif all([key in words for key in NonTechnicalQuestionDirectory.l2]):
+    elif compare == NonTechnicalQuestionDirectory.l2:
         question = "Why should we " +b['NN']+" "+ b['PRP']+"?"
         print(question)
-    elif all([key in words for key in NonTechnicalQuestionDirectory.l3]):
+    elif compare ==  NonTechnicalQuestionDirectory.l3:
         question = "What are " + b['PRP$'] + " " + b['NNS'] + "?"
         print(question)
-    elif all([key in words for key in NonTechnicalQuestionDirectory.l4]):
+    elif compare ==  NonTechnicalQuestionDirectory.l4:
         question = "Tell about " + b['PRP'] + "?"
         print(question)
-    elif all([key in words for key in NonTechnicalQuestionDirectory.l5]):
+    elif compare ==  NonTechnicalQuestionDirectory.l5:
         question = "What are your " + b['JJ'] + " " + b['NNS']  + "?"
         print(question)
-    elif all([key in words for key in NonTechnicalQuestionDirectory.l6]):
-        question = "What is your " + b['PRP$'] + " " + b['JJ'] +" "+b['NN'] + "?"
+    elif compare ==  NonTechnicalQuestionDirectory.l6:
+        question = "What is  " + b['PRP$'] + " " + b['JJ'] +" "+b['NN'] + "?"
         print(question)
     else:
         question = "Explain about your " + keywords+" and its technologies?"
