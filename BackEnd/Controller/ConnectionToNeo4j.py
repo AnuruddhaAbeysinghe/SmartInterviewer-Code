@@ -1,6 +1,6 @@
 from py2neo import Graph
 
-graph = Graph()
+graph = Graph("http://neo4j:Sepalika1993@127.0.0.1:7474/db/data")
 
 
 def ontologyQuestionGen(id):
@@ -27,9 +27,9 @@ def cvQuestionGen(db,id):
   # print(gen_Question)
   return gen_Question
 
-def cvQuestionProjectGen(db,pid,user):
+def cvQuestionProjectGen(db,db2,pid,user):
   # query = "MATCH (j:"+db+"{pid:'"+ pid+"'}) RETURN j.topic"
-  query = "MATCH (j:" + db + "{pid:'" + pid + "'}) - [r: projects]->(b:" + db + "{uid:'" + user + "'}) RETURN b.topic "
+  query = "MATCH (j:" + db + "{pid:'" + pid + "'}) - [r: projects_details]->(b:" + db2 + "{uid:'" + user + "'}) RETURN b.topic "
   gen_Question = graph.run(query).evaluate()
   print(gen_Question)
   return gen_Question
@@ -49,7 +49,7 @@ def get_node_id(db,session):
   gen_count = graph.run(query).evaluate()
   # print(gen_count)
   return gen_count
-# get_node_id("3")
+# get_node_id("CV","2")
 
 
 
@@ -80,9 +80,23 @@ def getProjects(db,id):
     # print(get_projects)
 
 def getMatchingTopics(db,topic):
-    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'})RETURN count(b.Name)>0"
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'}) -[r2:nested_has]->(c:subB) RETURN count(c.Name)>0"
     get_availability = graph.run(query).evaluate()
+    print(get_availability)
     return get_availability
+
+def getMatchingNestedTopicId(db,topic):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'}) -[r2:nested_has]->(c:subB) RETURN c.id"
+    get_availability = graph.run(query).evaluate()
+    print(get_availability)
+    return get_availability
+
+def getMatchingNestedTopic(db,topic,nesid):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'}) -[r2:nested_has]->(c:subB{id:'"+nesid+"'}) RETURN c.Name"
+    get_availability = graph.run(query).evaluate()
+    print(get_availability)
+    return get_availability
+#getMatchingNestedTopic("java","object oriented programming","NES_003")
 
 def getMatchingTopicsNonTech(db):
     query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub)RETURN count(b)>0"
@@ -95,7 +109,43 @@ def cvProjectTech(db,pid):
   gen_Question = graph.run(query).evaluate()
   return gen_Question
 
-# pro = cvProjectTech("CV",'p1')
+#returns the difficulty level list
+def getdiffLevelList(userId,db,db2,techno,level):
+    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db2 + "{technology:'" + techno + "'}) RETURN b." + level+""
+    gen_list = graph.run(query).evaluate()
+    print(gen_list)
+    return gen_list
+
+def getNestedDiffLevelList(userId,db,db2,db3,techno,level):
+    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db2 + "{technology:'" + techno + "'}) -[r2:nested_level] ->(c:"+db3+") RETURN c." + level+""
+    gen_list = graph.run(query).evaluate()
+    print(gen_list)
+    return gen_list
+
+#getNestedDiffLevelList("uid001","user_difficulty", "difficulty","nested_difficulty","python", "medium")
+
+
+#generates the session details
+def getQuestionMarks(db,db2,userId,sessid,number):
+    print(db)
+    print(db2)
+    print(userId)
+    print(sessid)
+    print(number)
+    query = "MATCH(a: "+db+"{Userid: '" + userId + "'}) - [r: userTOsession]->(b:"+db2+"{no: '"+sessid+"'}) return b."+number+""
+    gen_mark = graph.run(query).evaluate()
+    print("marks will be printed not to worry")
+
+    print(gen_mark)
+    print("marks will be printed not to worry")
+    return gen_mark
+
+
+
+#getQuestionMarks("user","session","uid001","1","question1")
+
+
+    # pro = cvProjectTech("CV",'p1')
 #
 # print(pro)
 
@@ -127,6 +177,38 @@ def sessionMarksStoring(Userid,Session,question,marks):
         marking = graph.run(query6).evaluate()
 
     return questionExist
+
+
+
+def createQtable1(K):
+    exist = "MATCH (n:language) where n.Name='" + K + "' return n.qtable"
+    qtableValue = graph.run(exist).evaluate()
+    return qtableValue
+
+
+# this is to send and update values
+def sendQtable(K,J):
+    query = "Match (n:language) where n.Name='" + K + "' SET n.qtable='" + J + "'  RETURN n.qtable"
+    qtableValue1 = graph.run(query).evaluate()
+    return qtableValue1
+
+# another method
+def edit_username(R):
+    person = graph.merge_one('language', 'qtable')
+    person['qtable'] = R
+    person.push()
+
+#get the easy, medium, hard to list
+def getDifficultyList(userid,K):
+    exist = "MATCH (n:user_difficulty{uid:'" + userid + "'}) - [r: level]->({technology:'" + K + "'}) return n.easy"
+    qtableValue = graph.run(exist).evaluate()
+    return qtableValue
+
+# def groupByRewardResult(userId,K,level):
+#     query = "MATCH ({uid:'" + userId + "'}) - [r: level]->({technology:'" + K + "'}) RETURN b." + level+""
+#     gen_list = graph.run(query).evaluate()
+#     print(gen_list)
+#     return gen_list
 
 
 

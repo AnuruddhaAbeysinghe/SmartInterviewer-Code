@@ -1,5 +1,5 @@
 import random,time
-from BackEnd.Controller import ConnectionToNeo4j,TextToSpeechConverter,QuestionCreator,NestedQuestionCreator,vari
+from BackEnd.Controller  import ConnectionToNeo4j,TextToSpeechConverter,QuestionCreator,NestedQuestionCreator,vari,test
 
 from gingerit.gingerit import GingerIt
 import requests
@@ -9,18 +9,23 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 
-technology_list = []
+# technology_list = []
 userid = vari.userId
 
 def generate_cv_questions():
     db = "CV"
+    db2= "project"
+    db3 ="project_d"
     # node_Count = ConnectionToNeo4j.getNodeCount(db)
     lang = 'en'
     q_list = []
     pro_list = []
     count = 1
     session = 0
-    answerValidated = -99
+    answer_validity = 0
+
+    global question_number
+    question_number = 0
 
     while count<=3:
         session = session + 1
@@ -38,7 +43,6 @@ def generate_cv_questions():
 
         print("node_count")
         print(session_node_count)
-
 
         for question_no in range(session_node_count):
 
@@ -59,9 +63,12 @@ def generate_cv_questions():
             grammer_corrected_question_list = parser.parse(actual_question)
             grammer_corrected_question = grammer_corrected_question_list.get("result")
             TextToSpeechConverter.text_to_speech(grammer_corrected_question, lang)
+            question_number = question_number+1
+            print(question_number)
+            print("hiiiiiiiiiiiiiiiiii printing count")
 
             if random_que=="5":
-                pro = ConnectionToNeo4j.getProjects("CV", "5")
+                pro = ConnectionToNeo4j.getProjects(db, "5")
                 print(pro)
                 for id in range (1,pro+1):
                     pro_list.append(str(id))
@@ -72,19 +79,32 @@ def generate_cv_questions():
                 modify_random_proj_que = "p"+random_proj_que
                 print(modify_random_proj_que)
 
-                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db,modify_random_proj_que,userid)
+                project_question = ConnectionToNeo4j.cvQuestionProjectGen(db2,db3,modify_random_proj_que,userid)
                 actual_project_question = QuestionCreator.gen_Question(project_question)
                 parser = GingerIt()
                 grammer_corrected_project_question_list = parser.parse(actual_project_question)
                 grammer_corrected_pr0ject_question = grammer_corrected_project_question_list.get("result")
                 TextToSpeechConverter.text_to_speech(grammer_corrected_pr0ject_question, lang)
+                question_number = question_number + 1
+                print(question_number)
+                print("hiiiiiiiiiiiiiiiiii printing count")
 
+                global technology_list
+                tech = test.kes()
 
-                tech = input()
-                global  technology_list
+                tech = NestedQuestionCreator.keywordSelector("",tech,"1","")
+                print(tech)
+                print("tech printed")
                 technology_list = NestedQuestionCreator.nonTechnicalKeywordSeelector(tech,modify_random_proj_que)
                 print("hello tech")
                 print(technology_list)
+                print("check validity")
+
+            print("after a while")
+            answer_validity = test.test()
+
+            while(answer_validity=="None" ):
+                answer_validity = test.test()
 
 
 

@@ -1,7 +1,7 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from BackEnd.Controller import WeightOfTheAnswer
-from BackEnd.Controller import ConnectionToNeo4j
+from difflib import SequenceMatcher
+
 
 
 def ValidatingTechnical(userAnswer, dbAnswer):
@@ -9,11 +9,8 @@ def ValidatingTechnical(userAnswer, dbAnswer):
     sentence1 = userAnswer
     sentence2 = dbAnswer
 
-    grammarMarks = WeightOfTheAnswer.process_content(sentence1)
-
     if len(sentence1.split()) == 0:
-
-        return ['None', '']
+        return None
 
     else:
 
@@ -25,13 +22,9 @@ def ValidatingTechnical(userAnswer, dbAnswer):
         wordsFiltered1 = []
         wordsFiltered2 = []
 
-        newSentence = ""
-
         for w in words1:
             if w not in stopWords:
                 wordsFiltered1.append(w)
-                newSentence = newSentence + " " + w
-
 
         for w in words2:
             if w not in stopWords:
@@ -51,37 +44,19 @@ def ValidatingTechnical(userAnswer, dbAnswer):
         wordcountofdbanswer = len(final_word.split())
         print(marks)
         print(wordcountofdbanswer)
-        finalmark = (marks/wordcountofdbanswer)+grammarMarks
-        finalmark = "%.2f" % finalmark
+        finalmark = marks/wordcountofdbanswer
+
         # finalmark = SequenceMatcher(None, wordsFiltered1, wordsFiltered2).ratio()
 
-        ConnectionToNeo4j.sessionMarksStoring('UID001', '1', 'question3', finalmark)
-
-        return_Value = [finalmark,newSentence]
-
-
-        return return_Value
+        return "%.2f" % finalmark
 
 def ValidatingNonTechnical(answer):
 
     answerwordcount = len(answer.split())
 
-    stopWords = set(stopwords.words('english'))
-
-    words1 = word_tokenize(answer)
-
-    wordsFiltered1 = []
-
-    newSentence = ""
-
-    for w in words1:
-        if w not in stopWords:
-            wordsFiltered1.append(w)
-            newSentence = newSentence + " " + w
-
     if answerwordcount == 0:
-        return ['None', '']
+        return None
     if answerwordcount < 15:
-        return [0.5, newSentence]
+        return  0.5
     if answerwordcount > 15:
-        return [1, newSentence]
+        return 1
