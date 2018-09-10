@@ -179,16 +179,26 @@ def edit_username(R):
     person.push()
 
 #get the easy, medium, hard to list
-def getDifficultyList(userid,K):
-    exist = "MATCH (n:user_difficulty{uid:'" + userid + "'}) - [r: level]->({technology:'" + K + "'}) return n.easy"
+def getDifficultyList(userid,K,category):
+    exist = "MATCH(n: user_difficulty{uid: '" + userid + "'}) - [r: level]->(b:difficulty{technology: '" + K + "'}) return b." + category + ""
     qtableValue = graph.run(exist).evaluate()
     return qtableValue
+
+#set the new value to node
+def sendNewDifficultyList(userid,K,rewardState,getDiffList4):
+    exist = "MATCH(n: user_difficulty{uid: '" + userid + "'}) - [r: level]->(b:difficulty{technology: '" + K + "'}) SET n." + rewardState + " ='" + getDiffList4 + "' return b." + rewardState + ""
+    qtableValue = graph.run(exist).evaluate()
+    return qtableValue
+
 
 # def groupByRewardResult(userId,K,level):
 #     query = "MATCH ({uid:'" + userId + "'}) - [r: level]->({technology:'" + K + "'}) RETURN b." + level+""
 #     gen_list = graph.run(query).evaluate()
 #     print(gen_list)
 #     return gen_list
+
+
+
 
 
 

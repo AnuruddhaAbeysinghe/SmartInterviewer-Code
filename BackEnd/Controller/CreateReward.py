@@ -222,21 +222,41 @@ convertProb2 = int(convertProb.strip("%"))
 print(convertProb2)
 #--identify the state--------------
 if convertProb2 <= 15:
-    rewardState = "Hard"
+    rewardState = "hard"
 elif convertProb2 <= 30:
-    rewardState = "Medium"
+    rewardState = "medium"
 else:
-    rewardState = "Easy"
+    rewardState = "easy"
 
 print(rewardState)
 #--update the ontology---------------------------
 
 userid = "uid001"
-nodeid = "3"
+nodeid = "6"
+category = "easy"
 
-#target- put 3 to easy from medium
+print(ConnectionToNeo4j.getDifficultyList(userid, K, category))
+
+getDiffList = str(ConnectionToNeo4j.getDifficultyList(userid, K, category))
+print(getDiffList)
 
 
+getDiffList2 = getDiffList.split(',')
+getDiffList2.remove(nodeid)
+getDiffList3 = list(map(int, getDiffList2))
+print(getDiffList3)
+
+
+
+
+
+def sendNewDiffList(userid, K, rewardState):
+    getDiffList4 = str(getDiffList3)
+    ConnectionToNeo4j.sendNewDifficultyList(userid, K, rewardState, getDiffList4)
+    print("this is in the function\n",getDiffList4)
+
+
+sendNewDiffList(userid, K, rewardState)
 
 #check the current stste of that node and delete it
 
