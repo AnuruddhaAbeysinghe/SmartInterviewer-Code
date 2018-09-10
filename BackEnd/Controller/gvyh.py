@@ -2,8 +2,10 @@
 
 def ab():
     p =["apple","ant","mary"]
-    if not p:
-        print("empyu")
+    v = ["apple","ant","mary"]
+
+    if p==v:
+        print("jbfhbvf")
 
 
 

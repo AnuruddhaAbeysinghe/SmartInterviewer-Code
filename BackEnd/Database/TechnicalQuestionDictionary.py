@@ -17,6 +17,6 @@ tl17 = ['VBP', 'IN', 'NN']
 tl18 = ['RB', 'JJ', 'JJ', 'NNS']
 tl19 = ['JJ', 'VBD', 'NNS']
 tl20 = ['CD', 'NN', 'NN']
-tl121 = ['NN', 'TO', 'VB', 'VBG']
+tl21 = ['NN', 'TO', 'VB', 'VBG']
 tl22 = ['NNS', 'IN', 'NN', 'NN']
 

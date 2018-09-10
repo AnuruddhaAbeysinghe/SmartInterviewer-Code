@@ -92,7 +92,7 @@ def generate_cv_questions():
                 global technology_list
                 tech = test.kes()
 
-                tech = NestedQuestionCreator.keywordSelector("",tech,"1")
+                tech = NestedQuestionCreator.keywordSelector("",tech,"1","")
                 print(tech)
                 print("tech printed")
                 technology_list = NestedQuestionCreator.nonTechnicalKeywordSeelector(tech,modify_random_proj_que)

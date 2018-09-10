@@ -12,14 +12,20 @@ def ontologyQuestionGen(id):
 # ontologyQuestionGen("1")
 
 
-def getValueFromdb(subsection):
+def getValueFromdb(subsection,type):
 
-    subsection = ""+subsection
-    exist = "MATCH(a: language) - [r: has]->(b:sub{Name:'"+subsection+"'})RETURN b.Details"
-    print(exist)
-    validationValue = graph.run(exist).evaluate()
-    print(validationValue)
-    return validationValue
+    if type == 'nested':
+        subsection = "" + subsection
+        exist = "MATCH(b:subB{Name:'"+subsection+"'})RETURN b.Details"
+        validationValue = graph.run(exist).evaluate()
+        print(validationValue)
+        return validationValue
+    else:
+        subsection = "" + subsection
+        exist = "MATCH(a: language) - [r: has]->(b:sub{Name:'" + subsection + "'})RETURN b.Details"
+        validationValue = graph.run(exist).evaluate()
+        print(validationValue)
+        return validationValue
 
 def cvQuestionGen(db,id):
   query = "MATCH (j:"+db+"{id:"+ id+"}) RETURN j.topic"
@@ -80,9 +86,23 @@ def getProjects(db,id):
     # print(get_projects)
 
 def getMatchingTopics(db,topic):
-    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'})RETURN count(b.Name)>0"
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'}) -[r2:nested_has]->(c:subB) RETURN count(c.Name)>0"
     get_availability = graph.run(query).evaluate()
+    print(get_availability)
     return get_availability
+
+def getMatchingNestedTopicId(db,topic):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'}) -[r2:nested_has]->(c:subB) RETURN c.id"
+    get_availability = graph.run(query).evaluate()
+    print(get_availability)
+    return get_availability
+
+def getMatchingNestedTopic(db,topic,nesid):
+    query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub{Name:'"+topic+"'}) -[r2:nested_has]->(c:subB{id:'"+nesid+"'}) RETURN c.Name"
+    get_availability = graph.run(query).evaluate()
+    print(get_availability)
+    return get_availability
+#getMatchingNestedTopic("java","object oriented programming","NES_003")
 
 def getMatchingTopicsNonTech(db):
     query = "MATCH(a:language{Name:'" + db + "'}) - [r: has]->(b:sub)RETURN count(b)>0"
@@ -102,7 +122,13 @@ def getdiffLevelList(userId,db,db2,techno,level):
     print(gen_list)
     return gen_list
 
-#getdiffLevelList("uid001", "difficulty", "python", "medium")
+def getNestedDiffLevelList(userId,db,db2,db3,techno,level):
+    query = "MATCH (j:" + db + "{uid:'" + userId + "'}) - [r: level]->(b:" + db2 + "{technology:'" + techno + "'}) -[r2:nested_level] ->(c:"+db3+") RETURN c." + level+""
+    gen_list = graph.run(query).evaluate()
+    print(gen_list)
+    return gen_list
+
+#getNestedDiffLevelList("uid001","user_difficulty", "difficulty","nested_difficulty","python", "medium")
 
 
 #generates the session details

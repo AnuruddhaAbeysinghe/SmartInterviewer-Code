@@ -2,9 +2,9 @@ import speech_recognition as sr
 from BackEnd.Controller import ConnectionToNeo4j, MostRecentAudioFileAccess, AnswerValidating
 
 
-def validation(subsection, typer):
+def validation(subsection, typer, treetype,qno):
  r = sr.Recognizer()
- audio = "BackEnd/Audio/"+MostRecentAudioFileAccess.MostRecentAudioClip()
+ audio = "../Audio/"+MostRecentAudioFileAccess.MostRecentAudioClip()
  marks = "No"
 
  with sr.AudioFile(audio) as source:
@@ -15,10 +15,10 @@ def validation(subsection, typer):
     print(text)
 
     if typer == "technical":
-        valuefromdb = ConnectionToNeo4j.getValueFromdb(subsection)
-        marks = AnswerValidating.ValidatingTechnical(text, valuefromdb)
+        valuefromdb = ConnectionToNeo4j.getValueFromdb(subsection, treetype)
+        marks = AnswerValidating.ValidatingTechnical(text, valuefromdb,qno)
     if typer == "nontechnical":
-        marks = AnswerValidating.ValidatingNonTechnical(text)
+        marks = AnswerValidating.ValidatingNonTechnical(text,qno)
  except Exception as e:
     print(e)
  return marks

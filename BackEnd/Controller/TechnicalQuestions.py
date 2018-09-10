@@ -1,4 +1,4 @@
-from BackEnd.Controller import  test,NonTechnicalQuestions,ConnectionToNeo4j,technicalQuestionCreator,TextToSpeechConverter,NestedQuestionCreator
+from BackEnd.Controller import  test,NonTechnicalQuestions,ConnectionToNeo4j,TechnicalQuestionCreators,TextToSpeechConverter,NestedQuestionCreator
 from BackEnd.Controller import DifficultyLevelSelector,vari
 import requests,math,random
 from gingerit.gingerit import GingerIt
@@ -165,12 +165,10 @@ def question_gen():
             q_list.remove(random_que)
             print(q_list)
             print(changed_know_list)
-            actual_question = technicalQuestionCreator.gen_Question(technical_question)
+            actual_question = TechnicalQuestionCreators.gen_Question(technical_question)
             parser = GingerIt()
-            grammer_corrected_question_list = parser.parse(actual_question)
-            grammer_cprrected_question = grammer_corrected_question_list.get("result")
+
             TextToSpeechConverter.text_to_speech(actual_question,lang)
-            print(grammer_cprrected_question)
 
 
             qprinted = qprinted+1;
@@ -189,11 +187,12 @@ def question_gen():
                 answer_validity = test.test()
 
             if itt>1 and nested_question_ccount>0:
-                filtered_words_string = " is unpickling a  good python concept overriding"
-                nested = NestedQuestionCreator.keywordSelector(random_table,filtered_words_string,"2")
+                filtered_words_string = "hdbhfhb dsds "
+                nested = NestedQuestionCreator.keywordSelector(random_table,filtered_words_string,"2",diff_level)
                 if nested != 0:
                     print("nested keyword value")
-                    actual_question = technicalQuestionCreator.gen_Question(nested)
+                    print(nested)
+                    actual_question = TechnicalQuestionCreators.gen_Question(nested)
                     TextToSpeechConverter.text_to_speech(actual_question, lang)
                     print(actual_question)
 
@@ -202,7 +201,7 @@ def question_gen():
                     print(qprinted)
                     print("qprint")
 
-                    question_number = question_number +1
+                    question_number = question_number + 1
                     prev1_que_count = prev1_que_count + 1
                     prev2_que_count = prev2_que_count + 1
 
@@ -219,6 +218,10 @@ def question_gen():
 
             else:
                 print("false")
+
+            if itt == itteration_value-1 and splitted_table_list_length == 1 and nested_question_ccount>0 :
+                itteration_value = itteration_value + nested_question_ccount
+                nested_question_ccount == 0
 
 
 
