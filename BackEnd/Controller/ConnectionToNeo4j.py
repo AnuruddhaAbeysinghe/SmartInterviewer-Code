@@ -1,6 +1,6 @@
 from py2neo import Graph
 
-graph = Graph()
+graph = Graph("http://neo4j:Sepalika1993@127.0.0.1:7474/db/data")
 
 
 def ontologyQuestionGen(id):
@@ -177,6 +177,38 @@ def sessionMarksStoring(Userid,Session,question,marks):
         marking = graph.run(query6).evaluate()
 
     return questionExist
+
+
+
+def createQtable1(K):
+    exist = "MATCH (n:language) where n.Name='" + K + "' return n.qtable"
+    qtableValue = graph.run(exist).evaluate()
+    return qtableValue
+
+
+# this is to send and update values
+def sendQtable(K,J):
+    query = "Match (n:language) where n.Name='" + K + "' SET n.qtable='" + J + "'  RETURN n.qtable"
+    qtableValue1 = graph.run(query).evaluate()
+    return qtableValue1
+
+# another method
+def edit_username(R):
+    person = graph.merge_one('language', 'qtable')
+    person['qtable'] = R
+    person.push()
+
+#get the easy, medium, hard to list
+def getDifficultyList(userid,K):
+    exist = "MATCH (n:user_difficulty{uid:'" + userid + "'}) - [r: level]->({technology:'" + K + "'}) return n.easy"
+    qtableValue = graph.run(exist).evaluate()
+    return qtableValue
+
+# def groupByRewardResult(userId,K,level):
+#     query = "MATCH ({uid:'" + userId + "'}) - [r: level]->({technology:'" + K + "'}) RETURN b." + level+""
+#     gen_list = graph.run(query).evaluate()
+#     print(gen_list)
+#     return gen_list
 
 
 

@@ -187,7 +187,7 @@ def question_gen():
                 answer_validity = test.test()
 
             if itt>1 and nested_question_ccount>0:
-                filtered_words_string = "is oject patchers tuple oop oriented oriented programming  operators "
+                filtered_words_string = "hdbhfhb dsds "
                 nested = NestedQuestionCreator.keywordSelector(random_table,filtered_words_string,"2",diff_level)
                 if nested != 0:
                     print("nested keyword value")
@@ -218,6 +218,10 @@ def question_gen():
 
             else:
                 print("false")
+
+            if itt == itteration_value-1 and splitted_table_list_length == 1 and nested_question_ccount>0 :
+                itteration_value = itteration_value + nested_question_ccount
+                nested_question_ccount == 0
 
 
 
