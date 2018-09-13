@@ -1,6 +1,6 @@
 from py2neo import Graph
 
-graph = Graph()
+graph = Graph("http://neo4j:Sepalika1993@127.0.0.1:7474/db/data")
 
 
 def ontologyQuestionGen(id):
@@ -186,15 +186,15 @@ def sessionMarksStoring(Userid,Session,question,marks):
 
 
 
-def createQtable1(K):
-    exist = "MATCH (n:language) where n.Name='" + K + "' return n.qtable"
+def createQtable1(langName):
+    exist = "MATCH (n:language) where n.Name='" + langName + "' return n.qtable"
     qtableValue = graph.run(exist).evaluate()
     return qtableValue
 
 
 # this is to send and update values
-def sendQtable(K,J):
-    query = "Match (n:language) where n.Name='" + K + "' SET n.qtable='" + J + "'  RETURN n.qtable"
+def sendQtable(langName,qTableCreated):
+    query = "Match (n:language) where n.Name='" + langName + "' SET n.qtable='" + qTableCreated + "'  RETURN n.qtable"
     qtableValue1 = graph.run(query).evaluate()
     return qtableValue1
 
@@ -205,23 +205,19 @@ def edit_username(R):
     person.push()
 
 #get the easy, medium, hard to list
-def getDifficultyList(userid,K,category):
-    exist = "MATCH(n: user_difficulty{uid: '" + userid + "'}) - [r: level]->(b:difficulty{technology: '" + K + "'}) return b." + category + ""
+def getDifficultyList(userid,langName,category):
+    exist = "MATCH(n: user_difficulty{uid: '" + userid + "'}) - [r: level]->(b:difficulty{technology: '" + langName + "'}) return b." + category + ""
     qtableValue = graph.run(exist).evaluate()
     return qtableValue
 
 #set the new value to node
-def sendNewDifficultyList(userid,K,rewardState,getDiffList4):
-    exist = "MATCH(n: user_difficulty{uid: '" + userid + "'}) - [r: level]->(b:difficulty{technology: '" + K + "'}) SET n." + rewardState + " ='" + getDiffList4 + "' return b." + rewardState + ""
+def sendNewDifficultyList(userid,langName,rewardState,str_getDiffList3):
+    exist = "MATCH(n: user_difficulty{uid: '" + userid + "'}) - [r: level]->(b:difficulty{technology: '" + langName + "'}) SET n." + rewardState + " ='" + str_getDiffList3 + "' return b." + rewardState + ""
     qtableValue = graph.run(exist).evaluate()
     return qtableValue
 
 
-# def groupByRewardResult(userId,K,level):
-#     query = "MATCH ({uid:'" + userId + "'}) - [r: level]->({technology:'" + K + "'}) RETURN b." + level+""
-#     gen_list = graph.run(query).evaluate()
-#     print(gen_list)
-#     return gen_list
+
 
 
 

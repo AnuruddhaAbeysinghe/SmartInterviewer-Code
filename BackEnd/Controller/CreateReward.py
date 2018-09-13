@@ -7,10 +7,8 @@ Created on Sun Jun 17 21:54:23 2018
 
 import numpy as np
 from xml.etree import ElementTree as ET
-from BackEnd.Controller import ConnectionToNeo4j
+from BackEnd.Controller import ConnectionToNeo4j,rewardVariable
 
-# ------Things to do---------------------------------------------------------------------------------------
-#update the q-table on ontology
 
 # ---------------------------------------------------------------------------------------------
 # Identify the state
@@ -45,11 +43,10 @@ else:
     print("State = ", state)
 
 # -----------------------------------------------------------------------------------
-K= "python"
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-print("Get from ontology \n", ConnectionToNeo4j.createQtable1(K))
-print(type(ConnectionToNeo4j.createQtable1(K)))
-#R = ConnectionToNeo4j.createQtable1(K)
+langName = rewardVariable.langName
+print("@@@@@This part for get from ontology@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("It is updated correctly \n", ConnectionToNeo4j.createQtable1(langName))
+print(type(ConnectionToNeo4j.createQtable1(langName)))
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 # -----------------------------------------------------------------------------------
 
@@ -60,11 +57,11 @@ print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 
 
-print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+
 #Get the String array matrix from ontology - split
-I = np.array(ConnectionToNeo4j.createQtable1(K)).tolist()
+I = np.array(ConnectionToNeo4j.createQtable1(langName)).tolist()
 Z = I.split(" ")
-print(Z)
+print("Z-spit krapu 1 \n",Z)
 print(type(Z))
 
 #get only numbers from the list
@@ -73,11 +70,10 @@ print(type(Z))
 
 #to remove the []
 number = " ".join(Z)
-print(number)
-print("this remove[]")
+print("this remove[] \n", number)
 print(type(number))
 
-
+print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 
 
 #H = [float(i) if '.' in i else int(i) for i in number]
@@ -85,22 +81,22 @@ print(type(number))
 #print("This str - float")
 #print(type(H))
 #Re-change it into 5,5 array
-#J = H.reshape(5,5)
-#print(type(J))
-#print(J)
+#qTableCreated = H.reshape(5,5)
+#print(type(qTableCreated))
+#print(qTableCreated)
 
 #change it into matrix
 # R = np.matrix(number)
 # print(type(R))
 # print(R)
 
-R = np.matrix([[64.0, 64.0, 64.0, 80.0, 64.0],
-               [64.0, 64.0, 64.0, 80.0, 64.0],
-               [64.0, 64.0, 64.0, 80.0, 64.0],
-               [64.0, 100.0, 64.0, 80.0, 64.0],
-               [64.0, 64.0, 64.0, 80.0, 64.0]])
+R = np.matrix([[64.0, 64.0, 64.0, 64.0, 64.0],
+               [64.0, 64.0, 64.0, 64.0, 64.0],
+               [64.0, 64.0, 64.0, 64.0, 64.0],
+               [64.0, 64.0, 64.0, 64.0, 64.0],
+               [64.0, 64.0, 64.0, 64.0, 64.0]])
 # try:
-#     I = float(ConnectionToNeo4j.createQtable1(K))
+#     I = float(ConnectionToNeo4j.createQtable1(langName))
 #     R = np.matrix(I)
 # except ValueError:
 #     print("That is not a valid number of miles")
@@ -198,13 +194,15 @@ print("^^^^^^^^^^^^^^^^^^^^^^^^^^")
 print(T)
 np.savetxt('../Database/text.txt', T, fmt='%f')
 
+print("-----New - 6-----------------------------------------")
 #-------------------------------------------------------
 # send to ontology
 
-J = str(T)
+qTableCreated = str(T)
 
-ConnectionToNeo4j.sendQtable(K,J)
+ConnectionToNeo4j.sendQtable(langName,qTableCreated)
 # -------------------------------------------------------------------------------
+print("------New - 7----------------------------------------")
 # convert to probability value
 
 if state == 3:
@@ -220,7 +218,10 @@ print(type(convertProb))
 
 convertProb2 = int(convertProb.strip("%"))
 print(convertProb2)
+
+
 #--identify the state--------------
+print("------New - 8----------------------------------------")
 if convertProb2 <= 15:
     rewardState = "hard"
 elif convertProb2 <= 30:
@@ -229,36 +230,34 @@ else:
     rewardState = "easy"
 
 print(rewardState)
+
 #--update the ontology---------------------------
+print("-------New - 9---------------------------------------")
+userid = rewardVariable.userid
+nodeid = rewardVariable.nodeid
+category = rewardVariable.category
 
-userid = "uid001"
-nodeid = "6"
-category = "easy"
+print(ConnectionToNeo4j.getDifficultyList(userid, langName, category))
 
-print(ConnectionToNeo4j.getDifficultyList(userid, K, category))
-
-getDiffList = str(ConnectionToNeo4j.getDifficultyList(userid, K, category))
-print(getDiffList)
+getDiffList = str(ConnectionToNeo4j.getDifficultyList(userid, langName, category))
+print("get existing list",getDiffList)
 
 
 getDiffList2 = getDiffList.split(',')
 getDiffList2.remove(nodeid)
 getDiffList3 = list(map(int, getDiffList2))
-print(getDiffList3)
+print(type(getDiffList3))
+str_getDiffList3 = ','.join(str(e) for e in getDiffList3)
+print("This is converted str", str_getDiffList3)
+print(type(str_getDiffList3))
+
+def sendNewDiffList(userid, langName, rewardState, str_getDiffList3):
+    #getDiffList4 = str(getDiffList3)
+    ConnectionToNeo4j.sendNewDifficultyList(userid, langName, rewardState, str_getDiffList3)
+    print("this is in the function\n",str_getDiffList3)
 
 
+sendNewDiffList(userid, langName, rewardState, str_getDiffList3)
 
 
-
-def sendNewDiffList(userid, K, rewardState):
-    getDiffList4 = str(getDiffList3)
-    ConnectionToNeo4j.sendNewDifficultyList(userid, K, rewardState, getDiffList4)
-    print("this is in the function\n",getDiffList4)
-
-
-sendNewDiffList(userid, K, rewardState)
-
-#check the current stste of that node and delete it
-
-#insert new one
 
