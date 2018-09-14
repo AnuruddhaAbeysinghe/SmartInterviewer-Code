@@ -43,15 +43,12 @@ else:
     print("State = ", state)
 
 # -----------------------------------------------------------------------------------
-langName = rewardVariable.langName
+# Get the latest updated q-table from ontology - only for shown
+langName = rewardVariable.getLanguageName()
 print("@@@@@This part for get from ontology@@@@@@@@@@@@@@@@@@@@@@@@@")
 print("It is updated correctly \n", ConnectionToNeo4j.createQtable1(langName))
 print(type(ConnectionToNeo4j.createQtable1(langName)))
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-# -----------------------------------------------------------------------------------
-
-
-
 
 #data = R
 print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
@@ -64,9 +61,6 @@ Z = I.split(" ")
 print("Z-spit krapu 1 \n",Z)
 print(type(Z))
 
-#get only numbers from the list
-# number = [num for num in Z if isinstance(num, (int,float))]
-# print(number)
 
 #to remove the []
 number = " ".join(Z)
@@ -234,8 +228,8 @@ print(rewardState)
 #--update the ontology---------------------------
 print("-------New - 9---------------------------------------")
 userid = rewardVariable.userid
-nodeid = rewardVariable.nodeid
-category = rewardVariable.category
+nodeid = rewardVariable.getNodeID()
+category = rewardVariable.getCategoryName()
 
 print(ConnectionToNeo4j.getDifficultyList(userid, langName, category))
 
