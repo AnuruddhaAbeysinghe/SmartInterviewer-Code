@@ -22,10 +22,6 @@ def getLanguageName(getLang):
     #langName = "python"
 
 
-
-global userid
-userid = "uid001"
-
 def getNodeID(getNode):
     global nodeid
     nodeid = getNode

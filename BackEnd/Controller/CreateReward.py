@@ -7,17 +7,25 @@ Created on Sun Jun 17 21:54:23 2018
 
 import numpy as np
 from xml.etree import ElementTree as ET
-from BackEnd.Controller import ConnectionToNeo4j,rewardVariable
+from BackEnd.Controller import ConnectionToNeo4j,vari
 
 
 # ---------------------------------------------------------------------------------------------
 # Identify the state
 
-facial = int(input("Facial :"))
-voice = int(input("Voice :"))
-answer = int(input("Answer :"))
+# facial = int(input("Facial :"))
+# voice = int(input("Voice :"))
+# answer = int(input("Answer :"))
 
-def rewardForQuestion(facial,voice,answer,userid, langName, nodeid, category):
+def rewardForQuestion(languageName, nodeId, difficultyLevel):
+    facial = 15
+    voice = 15
+    answer = 20
+
+    langName = languageName
+    userid = vari.userId
+    nodeid = nodeId
+    category = difficultyLevel
 
     total = (facial + voice + answer)
 
@@ -46,7 +54,7 @@ def rewardForQuestion(facial,voice,answer,userid, langName, nodeid, category):
 
     # -----------------------------------------------------------------------------------
     # Get the latest updated q-table from ontology - only for shown
-    langName = rewardVariable.getLanguageName()
+
     print("@@@@@This part for get from ontology@@@@@@@@@@@@@@@@@@@@@@@@@")
     print("It is updated correctly \n", ConnectionToNeo4j.createQtable1(langName))
     print(type(ConnectionToNeo4j.createQtable1(langName)))
@@ -217,9 +225,7 @@ def rewardForQuestion(facial,voice,answer,userid, langName, nodeid, category):
 
     # --update the ontology---------------------------
     print("-------New - 9---------------------------------------")
-    userid = rewardVariable.userid
-    nodeid = rewardVariable.getNodeID()
-    category = rewardVariable.getCategoryName()
+
 
     print(ConnectionToNeo4j.getDifficultyList(userid, langName, category))
 
