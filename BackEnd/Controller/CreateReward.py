@@ -17,15 +17,17 @@ from BackEnd.Controller import ConnectionToNeo4j,vari
 # voice = int(input("Voice :"))
 # answer = int(input("Answer :"))
 
-def rewardForQuestion(languageName, nodeId, difficultyLevel):
-    facial = 15
-    voice = 15
-    answer = 20
 
-    langName = languageName
+def rewardForQuestion(languageName, nodeId, difficultyLevel):
+    # languageName = "python"
+    # nodeId = 10
+    # difficultyLevel = "medium"
+
     userid = vari.userId
-    nodeid = nodeId
-    category = difficultyLevel
+
+    facial = 10 #have to remove
+    voice = 10  #have to remove
+    answer = 20 #have to remove
 
     total = (facial + voice + answer)
 
@@ -56,15 +58,15 @@ def rewardForQuestion(languageName, nodeId, difficultyLevel):
     # Get the latest updated q-table from ontology - only for shown
 
     print("@@@@@This part for get from ontology@@@@@@@@@@@@@@@@@@@@@@@@@")
-    print("It is updated correctly \n", ConnectionToNeo4j.createQtable1(langName))
-    print(type(ConnectionToNeo4j.createQtable1(langName)))
+    print("It is updated correctly \n", ConnectionToNeo4j.createQtable1(languageName))
+    print(type(ConnectionToNeo4j.createQtable1(languageName)))
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
     # data = R
     print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 
     # Get the String array matrix from ontology - split
-    I = np.array(ConnectionToNeo4j.createQtable1(langName)).tolist()
+    I = np.array(ConnectionToNeo4j.createQtable1(languageName)).tolist()
     Z = I.split(" ")
     print("Z-spit krapu 1 \n", Z)
     print(type(Z))
@@ -96,7 +98,7 @@ def rewardForQuestion(languageName, nodeId, difficultyLevel):
                    [64.0, 64.0, 64.0, 64.0, 64.0],
                    [64.0, 64.0, 64.0, 64.0, 64.0]])
     # try:
-    #     I = float(ConnectionToNeo4j.createQtable1(langName))
+    #     I = float(ConnectionToNeo4j.createQtable1(languageName))
     #     R = np.matrix(I)
     # except ValueError:
     #     print("That is not a valid number of miles")
@@ -193,7 +195,7 @@ def rewardForQuestion(languageName, nodeId, difficultyLevel):
 
     qTableCreated = str(T)
 
-    ConnectionToNeo4j.sendQtable(langName, qTableCreated)
+    ConnectionToNeo4j.sendQtable(languageName, qTableCreated)
     # -------------------------------------------------------------------------------
     print("------New - 7----------------------------------------")
     # convert to probability value
@@ -222,30 +224,63 @@ def rewardForQuestion(languageName, nodeId, difficultyLevel):
         rewardState = "easy"
 
     print(rewardState)
+    print(type(rewardState))
 
     # --update the ontology---------------------------
-    print("-------New - 9---------------------------------------")
+    print("-------New - 9- update the existing list--------------------------------------")
 
+    print(ConnectionToNeo4j.getDifficultyList(userid, languageName, difficultyLevel))
 
-    print(ConnectionToNeo4j.getDifficultyList(userid, langName, category))
-
-    getDiffList = str(ConnectionToNeo4j.getDifficultyList(userid, langName, category))
+    getDiffList = str(ConnectionToNeo4j.getDifficultyList(userid, languageName, difficultyLevel))
     print("get existing list", getDiffList)
+    print(type(getDiffList))
+
+    print("########exiting list 1 gattaa \n")
 
     getDiffList2 = getDiffList.split(',')
-    getDiffList2.remove(nodeid)
+    getDiffList2.remove(str(nodeId))
     getDiffList3 = list(map(int, getDiffList2))
+    print("this removed node and int it", getDiffList3)
     print(type(getDiffList3))
     str_getDiffList3 = ','.join(str(e) for e in getDiffList3)
     print("This is converted str", str_getDiffList3)
     print(type(str_getDiffList3))
 
-    def sendNewDiffList(userid, langName, rewardState, str_getDiffList3):
-        # getDiffList4 = str(getDiffList3)
-        ConnectionToNeo4j.sendNewDifficultyList(userid, langName, rewardState, str_getDiffList3)
-        print("this is in the function\n", str_getDiffList3)
+    print("#######now get the new list to update exiting one \n")
 
-    sendNewDiffList(userid, langName, rewardState, str_getDiffList3)
+    # update the existing category with new value
+    ConnectionToNeo4j.sendExistingDifficultyList(userid, languageName, difficultyLevel, str_getDiffList3)
+
+    print("-------New - 10- update the new list--------------------------------------")
+
+    # get the new category list
+
+    getNewList = ConnectionToNeo4j.getNewRewardList(userid, languageName, rewardState)
+    print(ConnectionToNeo4j.getNewRewardList(userid, languageName, rewardState))
+    print(type(getNewList))
+    print(type(nodeId))
+
+    str_nodeId = str(nodeId)
+    print(type(str_nodeId))
+
+    getnewList = getNewList.split(',')
+    print("1", getnewList)
+    getnewList.append(str_nodeId)
+    print("append new nod = ", getnewList)
+    # getDiffList4 =  [int(i) for i in appendNewNode]
+    # print("this append and transfer int  ", getDiffList4)
+    # print(type(getDiffList4))
+    str_getDiffList4 = ','.join(str(e) for e in getnewList)
+    print("This is converted str", str_getDiffList4)
+    print(type(str_getDiffList4))
+
+    print("Now it appended \n", str_getDiffList4)
+
+    # send to the new list to the new category
+
+    ConnectionToNeo4j.sendNewDifficultyList(userid, languageName, rewardState, str_getDiffList4)
+    print(type(str_getDiffList4))
+
 
 
 
