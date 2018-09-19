@@ -1,6 +1,6 @@
 from py2neo import Graph
 
-graph = Graph("http://neo4j:Sepalika1993@127.0.0.1:7474/db/data")
+graph = Graph()
 
 
 def ontologyQuestionGen(id):
